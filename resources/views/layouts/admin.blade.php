@@ -126,62 +126,102 @@
 </head>
 <body>
     <div class="admin-container">
-        <div class="sidebar">
-            <div class="logo">
-                <h2>Edu<span>Manage</span></h2>
+        <div 
+    x-data="{ open: false, idleTimer: null }"
+    x-init="
+        // Expand on scroll
+        window.addEventListener('scroll', () => {
+            open = true;
+            clearTimeout(idleTimer);
+
+            // Auto-collapse when idle for 2s
+            idleTimer = setTimeout(() => open = false, 2000);
+        });
+    "
+    @mouseenter="open = true"
+    @mouseleave="open = false"
+    :class="open ? 'w-64' : 'w-20'"
+    class="sidebar transition-all duration-300 flex flex-col shadow-2xl overflow-hidden"
+>
+    <!-- LOGO AREA -->
+    <div class="logo p-6 border-b border-teal-800 flex items-center justify-center">
+        
+        <!-- Expanded Logo -->
+        <template x-if="open">
+            <div class="text-center">
+                <h2 class="text-2xl font-bold text-white">
+                    Edu<span>Manage</span>
+                </h2>
                 <p class="text-teal-300 text-sm mt-1">Admin Panel</p>
             </div>
-            <ul class="nav-links">
-                <li class="{{ Request::is('admin-dashboard') ? 'active' : '' }}">
-                    <a href="{{ url('/admin-dashboard') }}">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('new-term') ? 'active' : '' }}">
-                    <a href="{{ url('/new-term') }}">
-                        <i class="fas fa-home"></i>
-                        <span>New Term</span>
-                    </a>
-                </li>
-                  <li class="{{ Request::is('manage-courses') ? 'active' : '' }}">
-                    <a href="{{ url('/manage-courses') }}">
-                        <i class="fas fa-cogs"></i>
-                        <span>Course Management</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('add-student') ? 'active' : '' }}">
-                    <a href="{{ url('/add-student') }}">
-                        <i class="fas fa-book"></i>
-                        <span>Students</span>
-                    </a>
-                </li>
-                 <li class="{{ Request::is('add-plo') ? 'active' : '' }}">
-                    <a href="{{ url('/add-plo') }}">
-                        <i class="fas fa-chart-line"></i>
-                        <span>PLO</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('add-sections') ? 'active' : '' }}">
-                    <a href="{{ url('/add-sections') }}">
-                        <i class="fas fa-users"></i>
-                        <span>Section</span>
-                    </a>
-                </li>
-                <li class="{{ Request::is('profile') ? 'active' : '' }}">
-                    <a href="{{ url('/profile') }}">
-                        <i class="fas fa-user-circle"></i>
-                        <span>Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        </template>
+
+        <!-- Collapsed Icon -->
+        <template x-if="!open">
+            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+        </template>
+    </div>
+
+    <!-- NAVIGATION -->
+    <ul class="nav-links mt-2">
+        <li class="{{ Request::is('admin-dashboard') ? 'active' : '' }}">
+            <a href="{{ url('/admin-dashboard') }}">
+                <i class="fas fa-home"></i>
+                <span x-show="open" class="ml-3">Dashboard</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('new-term') ? 'active' : '' }}">
+            <a href="{{ url('/new-term') }}">
+                <i class="fas fa-calendar-plus"></i>
+                <span x-show="open" class="ml-3">New Term</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('manage-courses') ? 'active' : '' }}">
+            <a href="{{ url('/manage-courses') }}">
+                <i class="fas fa-cogs"></i>
+                <span x-show="open" class="ml-3">Course Management</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('add-student') ? 'active' : '' }}">
+            <a href="{{ url('/add-student') }}">
+                <i class="fas fa-book"></i>
+                <span x-show="open" class="ml-3">Students</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('add-plo') ? 'active' : '' }}">
+            <a href="{{ url('/add-plo') }}">
+                <i class="fas fa-chart-line"></i>
+                <span x-show="open" class="ml-3">PLO</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('add-sections') ? 'active' : '' }}">
+            <a href="{{ url('/add-sections') }}">
+                <i class="fas fa-users"></i>
+                <span x-show="open" class="ml-3">Section</span>
+            </a>
+        </li>
+
+        <li class="{{ Request::is('profile') ? 'active' : '' }}">
+            <a href="{{ url('/profile') }}">
+                <i class="fas fa-user-circle"></i>
+                <span x-show="open" class="ml-3">Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#">
+                <i class="fas fa-sign-out-alt"></i>
+                <span x-show="open" class="ml-3">Logout</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
 
         <div class="main-content">
             @yield('content')
@@ -192,5 +232,6 @@
     </div>
 
     @yield('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </body>
 </html>

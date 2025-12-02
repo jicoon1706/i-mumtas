@@ -128,56 +128,93 @@
 </head>
 <body>
     <div class="admin-container">
-        <div class="sidebar">
-            <div class="logo">
-                <h2>Edu<span>Manage</span></h2>
-                <p class="text-teal-300 text-sm mt-1">Guest Panel</p>
-            </div>
-            <ul class="nav-links">
-                <li>
-                    <a href="#">
-                        <i class="fas fa-home"></i>
-                        <span>Dashboard</span>
-                    </a>
-                </li>
-                  <li>
-                    <a href="#">
-                        <i class="fas fa-cogs"></i>
-                        <span>Course Management</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-book"></i>
-                        <span>Students</span>
-                    </a>
-                </li>
-                 <li>
-                    <a href="#">
-                        <i class="fas fa-chart-line"></i>
-                        <span>PLO</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-users"></i>
-                        <span>Section</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user-circle"></i>
-                        <span>Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <div 
+    x-data="{ open: false, lastScroll: 0, idleTimeout: null }"
+    x-init="
+
+        // Expand when scrolling down slightly
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 30) {
+                open = true;
+                clearTimeout(idleTimeout);
+
+                // Collapse after 2 seconds of no scroll
+                idleTimeout = setTimeout(() => open = false, 2000);
+            }
+        });
+
+    "
+    @mouseenter="open = true"
+    @mouseleave="open = false"
+    :class="open ? 'w-64' : 'w-20'"
+    class="sidebar transition-all duration-300 flex flex-col shadow-2xl overflow-hidden"
+>
+    <!-- LOGO -->
+    <div class="logo p-6 border-b border-teal-800 flex items-center justify-center">
+        <template x-if="open">
+            <h2 class="text-2xl font-bold text-white">
+                Edu<span class="bg-gradient-to-r from-teal-400 to-cyan-500 bg-clip-text text-transparent">Manage</span>
+            </h2>
+        </template>
+
+        <template x-if="!open">
+            <i class="fas fa-graduation-cap text-white text-2xl"></i>
+        </template>
+    </div>
+
+    <!-- NAVIGATION -->
+    <ul class="nav-links mt-2">
+        <li>
+            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
+                <i class="fas fa-home w-5 text-center"></i>
+                <span x-show="open" class="ml-3">Dashboard</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
+                <i class="fas fa-cogs w-5 text-center"></i>
+                <span x-show="open" class="ml-3">Course Management</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
+                <i class="fas fa-book w-5 text-center"></i>
+                <span x-show="open" class="ml-3">Students</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
+                <i class="fas fa-chart-line w-5 text-center"></i>
+                <span x-show="open" class="ml-3">PLO</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
+                <i class="fas fa-users w-5 text-center"></i>
+                <span x-show="open" class="ml-3">Section</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
+                <i class="fas fa-user-circle w-5 text-center"></i>
+                <span x-show="open" class="ml-3">Profile</span>
+            </a>
+        </li>
+
+        <li>
+            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
+                <i class="fas fa-sign-out-alt w-5 text-center"></i>
+                <span x-show="open" class="ml-3">Logout</span>
+            </a>
+        </li>
+    </ul>
+</div>
+
 
         <div class="main-content">
             @yield('content')
@@ -188,5 +225,7 @@
     </div>
 
     @yield('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </body>
 </html>

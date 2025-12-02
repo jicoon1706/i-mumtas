@@ -3,6 +3,7 @@
 @section('title', 'Dashboard - EduManage')
 
 @section('content')
+<script src="https://cdn.tailwindcss.com"></script>
     <style type="text/tailwindcss">
         @tailwind base;
         @tailwind components;
@@ -234,11 +235,7 @@
             display: block;
         }
     </style>
-</head>
-
-
-        
-        <div class="header">
+<div class="header">
             <h1>CLO Management</h1>
             <div class="user-info">
                 <div>
@@ -271,7 +268,6 @@
             <h2 class="text-secondary text-xl font-semibold mb-5">Select a Course to Manage CLOs</h2>
             
             <div class="courses-grid">
-                
                 <div class="course-card" data-course="CS101">
                     <div class="course-header flex justify-between items-start mb-4">
                         <div class="course-info">
@@ -401,7 +397,7 @@
                 </button>
             </div>
 
-            <div class="form-container grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <div class="form-container grid grid-cols-1 gap-6 mb-8">
                 <div class="form-card">
                     <h3 class="flex items-center space-x-2"><i class="fas fa-plus-circle text-purple-600"></i> Add New CLO</h3>
                     <form id="cloForm">
@@ -430,21 +426,6 @@
                         </button>
                     </form>
                 </div>
-
-                <div class="form-card">
-                    <h3 class="flex items-center space-x-2"><i class="fas fa-link text-purple-600"></i> Connect to PLOs</h3>
-                    <div class="form-group">
-                        <label class="block mb-2 text-gray-600 font-medium text-sm">Select PLOs for this CLO:</label>
-                        <div class="plo-selection mt-4">
-                            <div class="plo-grid grid grid-cols-2 gap-3" id="plo-grid">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="mappingNotes">Mapping Notes (Optional)</label>
-                        <textarea id="mappingNotes" class="form-control min-h-[100px] resize-y" placeholder="Add any notes about the CLO-PLO mapping..."></textarea>
-                    </div>
-                </div>
             </div>
 
             <div class="clo-list">
@@ -456,12 +437,11 @@
                                 <th>CLO Code</th>
                                 <th>Description</th>
                                 <th>Cognitive Level</th>
-                                <th>Mapped PLOs</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody id="clo-table-body">
-                            </tbody>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -477,122 +457,66 @@
         </div>
 
     <script>
-        // Sample PLO data
-        const plos = [
-            { id: 'plo1', code: 'PLO1', title: 'Engineering Knowledge', description: 'Apply knowledge of mathematics, science, engineering fundamentals' },
-            { id: 'plo2', code: 'PLO2', title: 'Problem Analysis', description: 'Identify, formulate, research literature and analyze complex engineering problems' },
-            { id: 'plo3', code: 'PLO3', title: 'Design/Development', description: 'Design solutions for complex engineering problems' },
-            { id: 'plo4', code: 'PLO4', title: 'Investigation', description: 'Conduct investigations of complex problems using research-based knowledge' },
-            { id: 'plo5', code: 'PLO5', title: 'Modern Tool Usage', description: 'Create, select and apply appropriate techniques, resources, and modern tools' },
-            { id: 'plo6', code: 'PLO6', title: 'Engineer and Society', description: 'Apply reasoning to assess societal, health, safety, legal and cultural issues' },
-            { id: 'plo7', code: 'PLO7', title: 'Environment and Sustainability', description: 'Understand the impact of professional engineering solutions' },
-            { id: 'plo8', code: 'PLO8', title: 'Ethics', description: 'Apply ethical principles and commit to professional ethics and responsibilities' },
-            { id: 'plo9', code: 'PLO9', title: 'Individual and Team Work', description: 'Function effectively as an individual, and as a member or leader in diverse teams' },
-            { id: 'plo10', code: 'PLO10', title: 'Communication', description: 'Communicate effectively on complex engineering activities' },
-            { id: 'plo11', code: 'PLO11', title: 'Project Management', description: 'Demonstrate knowledge and understanding of engineering management principles' },
-            { id: 'plo12', code: 'PLO12', title: 'Lifelong Learning', description: 'Recognize the need for, and have the preparation and ability to engage in independent and life-long learning' }
-        ];
-
-        // Sample CLO data for courses
         const sampleClos = {
             'CS101': [
-                { code: 'CLO1', description: 'Explain fundamental programming concepts and constructs', level: 'knowledge', plos: ['PLO1', 'PLO2'] },
-                { code: 'CLO2', description: 'Design and implement simple algorithms to solve problems', level: 'application', plos: ['PLO2', 'PLO3'] },
-                { code: 'CLO3', description: 'Apply debugging techniques to identify and fix code errors', level: 'application', plos: ['PLO2'] },
-                { code: 'CLO4', description: 'Demonstrate understanding of data types and control structures', level: 'comprehension', plos: ['PLO1'] }
+                { code: 'CLO1', description: 'Explain fundamental programming concepts and constructs', level: 'knowledge' },
+                { code: 'CLO2', description: 'Design and implement simple algorithms to solve problems', level: 'application' },
+                { code: 'CLO3', description: 'Apply debugging techniques to identify and fix code errors', level: 'application' },
+                { code: 'CLO4', description: 'Demonstrate understanding of data types and control structures', level: 'comprehension' }
             ],
             'CS201': [
-                { code: 'CLO1', description: 'Analyze time and space complexity of algorithms', level: 'analysis', plos: ['PLO2', 'PLO4'] },
-                { code: 'CLO2', description: 'Implement various data structures and their operations', level: 'application', plos: ['PLO2', 'PLO3'] },
-                { code: 'CLO3', description: 'Compare and contrast different data structure implementations', level: 'evaluation', plos: ['PLO2'] }
+                { code: 'CLO1', description: 'Analyze time and space complexity of algorithms', level: 'analysis' },
+                { code: 'CLO2', description: 'Implement various data structures and their operations', level: 'application' },
+                { code: 'CLO3', description: 'Compare and contrast different data structure implementations', level: 'evaluation' }
             ],
             'CS301': [
-                { code: 'CLO1', description: 'Design efficient algorithms for computational problems', level: 'synthesis', plos: ['PLO2', 'PLO3'] },
-                { code: 'CLO2', description: 'Analyze algorithm correctness and complexity', level: 'analysis', plos: ['PLO2', 'PLO4'] },
-                { code: 'CLO3', description: 'Apply algorithmic strategies to solve complex problems', level: 'application', plos: ['PLO2'] },
-                { code: 'CLO4', description: 'Evaluate algorithm performance in different scenarios', level: 'evaluation', plos: ['PLO2'] },
-                { code: 'CLO5', description: 'Explain fundamental algorithmic paradigms', level: 'knowledge', plos: ['PLO1'] }
+                { code: 'CLO1', description: 'Design efficient algorithms for computational problems', level: 'synthesis' },
+                { code: 'CLO2', description: 'Analyze algorithm correctness and complexity', level: 'analysis' },
+                { code: 'CLO3', description: 'Apply algorithmic strategies to solve complex problems', level: 'application' },
+                { code: 'CLO4', description: 'Evaluate algorithm performance in different scenarios', level: 'evaluation' },
+                { code: 'CLO5', description: 'Explain fundamental algorithmic paradigms', level: 'knowledge' }
             ],
             'EE101': [
-                { code: 'CLO1', description: 'Apply circuit laws and theorems to analyze electrical circuits', level: 'application', plos: ['PLO1', 'PLO2'] },
-                { code: 'CLO2', description: 'Design simple electrical circuits for specific applications', level: 'synthesis', plos: ['PLO3'] }
+                { code: 'CLO1', description: 'Apply circuit laws and theorems to analyze electrical circuits', level: 'application' },
+                { code: 'CLO2', description: 'Design simple electrical circuits for specific applications', level: 'synthesis' }
             ]
         };
 
-        // Current state
         let currentCourse = '';
         let currentClos = [];
 
-        // DOM Elements
         const coursesList = document.getElementById('courses-list');
         const cloManagement = document.getElementById('clo-management');
         const backToCoursesBtn = document.getElementById('back-to-courses');
         const courseNameSpan = document.getElementById('course-name');
-        const ploGrid = document.getElementById('plo-grid');
         const cloForm = document.getElementById('cloForm');
         const cloTableBody = document.getElementById('clo-table-body');
-        const addCloBtnInitial = document.getElementById('addCloBtn'); // New button listener
+        const addCloBtnInitial = document.getElementById('addCloBtn');
 
-        // Initialize PLO grid
-        function initializePloGrid() {
-            ploGrid.innerHTML = '';
-            plos.forEach(plo => {
-                const ploItem = document.createElement('div');
-                // Use new .plo-item class
-                ploItem.className = 'plo-item'; 
-                ploItem.dataset.ploId = plo.id;
-                
-                // Use new classes, relying on the <style> block for appearance
-                ploItem.innerHTML = `
-                    <div class="plo-checkbox w-4 h-4 rounded-sm border-2 border-gray-300 flex items-center justify-center transition-all duration-300 ease-in-out"></div>
-                    <div class="plo-info">
-                        <h4 class="text-gray-800 text-sm font-semibold mb-0.5">${plo.code}</h4>
-                        <p class="text-gray-500 text-xs">${plo.title}</p>
-                    </div>
-                `;
-                
-                ploItem.addEventListener('click', function() {
-                    // Toggles the custom 'selected' class defined in the <style> block
-                    this.classList.toggle('selected'); 
-                });
-                
-                ploGrid.appendChild(ploItem);
-            });
-        }
-
-        // Load CLOs for a course
         function loadClosForCourse(courseCode) {
             currentCourse = courseCode;
-            // IMPORTANT: Create a deep copy of CLOs so changes in the form/table don't mutate the source data immediately
-            currentClos = JSON.parse(JSON.stringify(sampleClos[courseCode] || [])); 
+            currentClos = JSON.parse(JSON.stringify(sampleClos[courseCode] || []));
             const courseCard = document.querySelector(`.course-card[data-course="${courseCode}"]`);
             const courseTitle = courseCard ? courseCard.querySelector('h3').textContent.replace(`${courseCode} - `, '') : 'Unknown Course';
 
             courseNameSpan.textContent = `${courseCode} - ${courseTitle}`;
             
-            // Update breadcrumb
-            const breadcrumbSpan = document.querySelector('.breadcrumb span');
-            breadcrumbSpan.innerHTML = `CLO Management for ${courseCode}`;
+            document.querySelector('.breadcrumb span').innerHTML = `CLO Management for ${courseCode}`;
             
-            // Show CLO management section
             coursesList.style.display = 'none';
             cloManagement.classList.add('active');
             
-            // Render CLO table
             renderCloTable();
-            
-            // Reset form to 'Add New CLO' state when switching courses
             resetFormToAddMode();
         }
 
-        // Render CLO table
         function renderCloTable() {
             cloTableBody.innerHTML = '';
             
             if (currentClos.length === 0) {
                 cloTableBody.innerHTML = `
                     <tr>
-                        <td colspan="5" class="py-3 text-center text-gray-500 italic bg-white">
+                        <td colspan="4" class="py-3 text-center text-gray-500 italic bg-white">
                             No CLOs defined for this course yet. Add your first CLO using the form above.
                         </td>
                     </tr>
@@ -602,22 +526,11 @@
             
             currentClos.forEach(clo => {
                 const row = document.createElement('tr');
-                // .data-table tr class is handled by CSS now
-                
-                const ploBadges = clo.plos.map(plo => 
-                    // Use new .plo-badge class
-                    `<span class="plo-badge">${plo}</span>`
-                ).join('');
                 
                 row.innerHTML = `
                     <td>${clo.code}</td>
                     <td>${clo.description}</td>
                     <td><span class="font-semibold text-purple-600">${capitalizeFirstLetter(clo.level)}</span></td>
-                    <td>
-                        <div class="flex flex-wrap gap-1">
-                            ${ploBadges}
-                        </div>
-                    </td>
                     <td>
                         <button class="btn btn-outline btn-sm edit-clo-btn flex items-center space-x-1" data-clo-code="${clo.code}">
                             <i class="fas fa-edit"></i> Edit
@@ -631,7 +544,6 @@
                 cloTableBody.appendChild(row);
             });
             
-            // Add event listeners to newly rendered buttons
             addCloActionListeners();
         }
 
@@ -651,32 +563,17 @@
             });
         }
 
-        // Capitalize first letter utility
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
 
-        function getSelectedPlos() {
-            return Array.from(document.querySelectorAll('.plo-item.selected'))
-                .map(item => item.querySelector('h4').textContent.trim());
-        }
-
-        function resetPloSelection() {
-            document.querySelectorAll('.plo-item.selected').forEach(item => {
-                item.classList.remove('selected');
-            });
-            document.getElementById('mappingNotes').value = '';
-        }
-
         function resetFormToAddMode() {
             cloForm.reset();
-            resetPloSelection();
             document.querySelector('.form-card h3').innerHTML = '<i class="fas fa-plus-circle text-purple-600"></i> Add New CLO';
             document.querySelector('.btn-success').innerHTML = '<i class="fas fa-save"></i> Add CLO';
             cloForm.onsubmit = handleAddClo;
         }
 
-        // Add new CLO (Simulated)
         function addClo(cloData) {
             currentClos.push(cloData);
             renderCloTable();
@@ -684,29 +581,16 @@
             alert(`CLO ${cloData.code} added successfully! (Simulated)`);
         }
 
-        // Edit CLO
         function editClo(cloCode) {
             const clo = currentClos.find(c => c.code === cloCode);
             if (clo) {
-                // Populate form with CLO data
                 document.getElementById('cloCode').value = clo.code;
                 document.getElementById('cloDescription').value = clo.description;
                 document.getElementById('cloLevel').value = clo.level;
                 
-                // Select PLOs
-                resetPloSelection(); // Clear previous selection
-                document.querySelectorAll('.plo-item').forEach(item => {
-                    const ploCode = item.querySelector('h4').textContent.trim();
-                    if (clo.plos.includes(ploCode)) {
-                        item.classList.add('selected');
-                    } 
-                });
-                
-                // Change form to edit mode
                 document.querySelector('.form-card h3').innerHTML = '<i class="fas fa-edit text-purple-600"></i> Edit CLO';
                 document.querySelector('.btn-success').innerHTML = '<i class="fas fa-save"></i> Update CLO';
                 
-                // Set form submit behavior to update
                 cloForm.onsubmit = function(e) {
                     e.preventDefault();
                     updateClo(cloCode);
@@ -714,26 +598,22 @@
             }
         }
 
-        // Update CLO
         function updateClo(oldCloCode) {
             const cloCode = document.getElementById('cloCode').value;
             const description = document.getElementById('cloDescription').value;
             const level = document.getElementById('cloLevel').value;
-            const selectedPlos = getSelectedPlos();
             
-            if (selectedPlos.length === 0) {
-                alert('Please select at least one PLO for this CLO.');
+            if (!cloCode || !description || !level) {
+                alert('Please fill out all fields.');
                 return;
             }
 
-            // Remove the old CLO (by filtering out the original code)
-            currentClos = currentClos.filter(c => c.code !== oldCloCode); 
+            currentClos = currentClos.filter(c => c.code !== oldCloCode);
             
             const updatedClo = {
                 code: cloCode,
                 description: description,
-                level: level,
-                plos: selectedPlos
+                level: level
             };
             
             currentClos.push(updatedClo);
@@ -743,12 +623,10 @@
             alert(`CLO ${cloCode} updated successfully! (Simulated)`);
         }
 
-        // Delete CLO (Simulated)
         function deleteClo(cloCode) {
             if (confirm(`Are you sure you want to delete ${cloCode}?`)) {
                 currentClos = currentClos.filter(c => c.code !== cloCode);
                 renderCloTable();
-                // If there is an ongoing edit session for the deleted CLO, reset the form
                 if (document.getElementById('cloCode').value === cloCode) {
                     resetFormToAddMode();
                 }
@@ -756,42 +634,28 @@
             }
         }
 
-        // Handle add CLO form submission
         function handleAddClo(e) {
             e.preventDefault();
             
             const cloCode = document.getElementById('cloCode').value;
             const description = document.getElementById('cloDescription').value;
             const level = document.getElementById('cloLevel').value;
-            const selectedPlos = getSelectedPlos();
             
             if (!cloCode || !description || !level) {
-                 alert('Please fill out CLO Code, Description, and Cognitive Level.');
-                 return;
-            }
-
-            if (selectedPlos.length === 0) {
-                alert('Please select at least one PLO for this CLO.');
+                alert('Please fill out all fields.');
                 return;
             }
             
             const newClo = {
                 code: cloCode,
                 description: description,
-                level: level,
-                plos: selectedPlos
+                level: level
             };
             
             addClo(newClo);
         }
 
-
-        // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize PLO grid
-            initializePloGrid();
-            
-            // Course card click events
             document.querySelectorAll('.course-card').forEach(card => {
                 card.addEventListener('click', function() {
                     const courseCode = this.dataset.course;
@@ -799,23 +663,14 @@
                 });
             });
             
-            // Back to courses button
             backToCoursesBtn.addEventListener('click', function() {
                 cloManagement.classList.remove('active');
                 coursesList.style.display = 'block';
-                
-                // Reset breadcrumb
                 document.querySelector('.breadcrumb span').textContent = 'CLO Management';
-                
-                // Reset form state in case we were editing/adding
                 resetFormToAddMode();
             });
             
-            // New initial "Add New CLO" button listener (from action row)
             addCloBtnInitial.addEventListener('click', () => {
-                // Do the same action as clicking a course card, but then open the CLO management view
-                // For simplicity, we just reset the form and ask the user to select a course first.
-                // In a real app, this button would likely be disabled or open a modal to select a course.
                 if (currentCourse && cloManagement.classList.contains('active')) {
                     resetFormToAddMode();
                     document.getElementById('cloCode').focus();
@@ -824,10 +679,8 @@
                 }
             });
 
-            // Initial CLO form submission handler (for adding)
             cloForm.onsubmit = handleAddClo;
             
-            // Update initial CLO counts dynamically if needed
             for (const courseId in sampleClos) {
                 const count = sampleClos[courseId].length;
                 const countElement = document.querySelector(`.clo-count span[data-clo-count="${courseId}"]`);

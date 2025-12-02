@@ -3,6 +3,7 @@
 @section('title', 'My Assigned Sections - EduManage')
 
 @section('content')
+<script src="https://cdn.tailwindcss.com"></script>
     <style>
         /* Move critical styles to regular CSS */
         .header {

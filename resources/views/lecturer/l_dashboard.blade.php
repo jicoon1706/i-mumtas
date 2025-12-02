@@ -3,6 +3,7 @@
 @section('title', 'Dashboard - EduManage')
 
 @section('content')
+<script src="https://cdn.tailwindcss.com"></script>
 <div class="header">
     <h1 class="text-3xl font-bold text-gray-800">Lecturer Dashboard</h1>
     <div class="user-info">
