@@ -102,7 +102,7 @@
             }
         }
     </style>
-</head>
+
     <div class="main-content p-6">
         
         <div class="header">

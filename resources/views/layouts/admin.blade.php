@@ -138,6 +138,12 @@
                         <span>Dashboard</span>
                     </a>
                 </li>
+                <li class="{{ Request::is('new-term') ? 'active' : '' }}">
+                    <a href="{{ url('/new-term') }}">
+                        <i class="fas fa-home"></i>
+                        <span>New Term</span>
+                    </a>
+                </li>
                   <li class="{{ Request::is('manage-courses') ? 'active' : '' }}">
                     <a href="{{ url('/manage-courses') }}">
                         <i class="fas fa-cogs"></i>

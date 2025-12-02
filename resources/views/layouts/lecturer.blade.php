@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'EduManage Lecturer')</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.tailwindcss.com"></script>
     
     <style type="text/tailwindcss">
         @tailwind base;
@@ -34,7 +33,6 @@
 
             body {
                 @apply font-sans text-gray-700 min-h-screen;
-                /* Background is only visible around the .admin-container */
                 background: linear-gradient(135deg, #17A2B8 0%, #0f8a9e 100%);
             }
 
@@ -45,49 +43,66 @@
 
         @layer components {
             .admin-container {
-                /* Set up the main flex container for sidebar and content */
                 @apply flex min-h-screen;
             }
 
             .sidebar {
-                @apply w-64 flex-shrink-0 shadow-2xl flex flex-col;
-                /* Rich teal gradient for sidebar */
+                @apply flex-shrink-0 shadow-2xl flex flex-col transition-all duration-300 ease-in-out;
                 background: linear-gradient(180deg, #6B46C1 0%, #8B5CF6 50%, #A78BFA 100%);
+                width: 80px;
+            }
+
+            .sidebar.expanded {
+                width: 256px;
             }
 
             .main-content {
-                /* Allow content to take the remaining space and set a neutral background */
-                @apply flex-1 p-8 overflow-auto;
+                @apply flex-1 p-8 overflow-auto transition-all duration-300;
                 background: linear-gradient(135deg, #F5F3FF 0%, #E9D5FF 50%, #D8B4FE 100%);
             }
 
             .logo {
-                @apply p-6 border-b border-teal-800;
+                @apply p-6 border-b border-purple-800 transition-all duration-300;
             }
             
             .logo h2 {
-                @apply text-2xl font-bold text-white;
+                @apply text-2xl font-bold text-white whitespace-nowrap overflow-hidden;
             }
             
             .logo h2 span {
-                @apply bg-gradient-to-r from-teal-400 to-cyan-500 bg-clip-text text-transparent;
+                @apply bg-gradient-to-r from-purple-300 to-pink-300 bg-clip-text text-transparent;
             }
 
-            .nav-links li a {
-                @apply flex items-center p-4 text-teal-100 hover:bg-teal-800/50 hover:text-white transition-all duration-200 relative;
+            .logo p {
+                @apply text-purple-300 text-sm mt-1 whitespace-nowrap overflow-hidden;
+            }
+
+            .sidebar:not(.expanded) .logo h2 {
+                @apply text-center;
+            }
+
+            .sidebar:not(.expanded) .logo p {
+                @apply opacity-0;
+            }
+
+            .nav-links li a,
+            .nav-links li button {
+                @apply flex items-center p-4 text-purple-100 hover:bg-purple-800/50 hover:text-white transition-all duration-200 relative w-full text-left;
             }
             
-            .nav-links li a::before {
+            .nav-links li a::before,
+            .nav-links li button::before {
                 content: '';
-                @apply absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-teal-400 to-cyan-400 transform scale-y-0 transition-transform duration-200;
+                @apply absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-purple-400 to-pink-400 transform scale-y-0 transition-transform duration-200;
             }
             
-            .nav-links li a:hover::before {
+            .nav-links li a:hover::before,
+            .nav-links li button:hover::before {
                 @apply scale-y-100;
             }
 
             .nav-links li.active a {
-                @apply bg-teal-800/70 text-white font-semibold;
+                @apply bg-purple-800/70 text-white font-semibold;
             }
             
             .nav-links li.active a::before {
@@ -95,10 +110,33 @@
             }
 
             .nav-links i {
-                @apply text-lg mr-4 w-5 text-center;
+                @apply text-lg w-5 text-center flex-shrink-0;
+            }
+
+            .nav-links span {
+                @apply whitespace-nowrap overflow-hidden transition-all duration-300;
+            }
+
+            .sidebar:not(.expanded) .nav-links span {
+                @apply opacity-0 w-0;
+            }
+
+            .sidebar.expanded .nav-links i {
+                @apply mr-4;
+            }
+
+            .sidebar:not(.expanded) .nav-links .fa-chevron-down {
+                @apply opacity-0 w-0;
+            }
+
+            .dropdown-content {
+                @apply pl-8 bg-purple-900/20 space-y-1 overflow-hidden transition-all duration-300;
+            }
+
+            .sidebar:not(.expanded) .dropdown-content {
+                @apply max-h-0 opacity-0;
             }
             
-            /* Add base Header and User Info styles here for global use */
             .header {
                 @apply flex justify-between items-center bg-white p-6 rounded-2xl shadow-xl mb-8 border border-gray-100;
                 background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -108,7 +146,7 @@
                 @apply flex items-center space-x-3;
             }
             .user-info img {
-                @apply w-12 h-12 rounded-full object-cover ring-4 ring-teal-500 ring-offset-2;
+                @apply w-12 h-12 rounded-full object-cover ring-4 ring-purple-500 ring-offset-2;
             }
             .user-info h3 {
                 @apply text-sm font-semibold m-0;
@@ -117,7 +155,6 @@
                 @apply text-xs text-gray-500 m-0;
             }
             
-            /* Add a generic footer style for the main content area */
             footer {
                 @apply text-center py-4 mt-8 text-sm text-gray-500;
             }
@@ -125,54 +162,88 @@
     </style>
 </head>
 <body>
-    <div class="admin-container">
-        <div class="sidebar">
+        <div class="admin-container" x-data="{ 
+        sidebarExpanded: false,
+        lecturerOpen: false,
+        courseLeaderOpen: false
+    }">
+        <div 
+            class="sidebar"
+            :class="{ 'expanded': sidebarExpanded }"
+            @mouseenter="sidebarExpanded = true"
+            @mouseleave="sidebarExpanded = false; lecturerOpen = false; courseLeaderOpen = false"
+        >
             <div class="logo">
-                <h2>Edu<span>Manage</span></h2>
-                <p class="text-teal-300 text-sm mt-1">Lecturer Panel</p>
+                <h2 x-show="sidebarExpanded" x-transition>Edu<span>Manage</span></h2>
+                <h2 x-show="!sidebarExpanded" class="text-center">EM</h2>
+                <p x-show="sidebarExpanded" x-transition>Lecturer Panel</p>
             </div>
-            <ul class="nav-links">
+            <ul class="nav-links space-y-1">
                 <li>
-                    <a href="#">
+                    <a href="/l-dashboard">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
                 </li>
-                  <li>
-                    <a href="#">
-                        <i class="fas fa-cogs"></i>
-                        <span>Course Management</span>
-                    </a>
+            
+                <!-- Lecturer Dropdown -->
+                <li class="relative">
+                    <button 
+                        @click="lecturerOpen = !lecturerOpen"
+                        @mouseenter="if(sidebarExpanded) lecturerOpen = true"
+                    >
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <span>Lecturer</span>
+                        <i class="fas fa-chevron-down ml-auto transition-transform duration-200" :class="{ 'rotate-180': lecturerOpen }"></i>
+                    </button>
+                    <ul 
+                        x-show="lecturerOpen && sidebarExpanded" 
+                        x-transition
+                        class="dropdown-content"
+                    >
+                        <li>
+                            <a href="/view-students">
+                                <i class="fas fa-users"></i>
+                                <span>Section</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/lecturer/assignments">
+                                <i class="fas fa-tasks"></i>
+                                <span>Assignments</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-book"></i>
-                        <span>Students</span>
-                    </a>
-                </li>
-                 <li>
-                    <a href="#">
-                        <i class="fas fa-chart-line"></i>
-                        <span>PLO</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-users"></i>
-                        <span>Section</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-user-circle"></i>
-                        <span>Profile</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
+
+                <!-- Course Leader Dropdown -->
+                <li class="relative">
+                    <button 
+                        @click="courseLeaderOpen = !courseLeaderOpen"
+                        @mouseenter="if(sidebarExpanded) courseLeaderOpen = true"
+                    >
+                        <i class="fas fa-user-graduate"></i>
+                        <span>Course Leader</span>
+                        <i class="fas fa-chevron-down ml-auto transition-transform duration-200" :class="{ 'rotate-180': courseLeaderOpen }"></i>
+                    </button>
+                    <ul 
+                        x-show="courseLeaderOpen && sidebarExpanded" 
+                        x-transition
+                        class="dropdown-content"
+                    >
+                        <li>
+                            <a href="/manage-assessments">
+                                <i class="fas fa-cogs"></i>
+                                <span>Assessment Management</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/add-clo">
+                                <i class="fas fa-book"></i>
+                                <span>CLO</span>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </div>
@@ -186,5 +257,7 @@
     </div>
 
     @yield('scripts')
+
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 </body>
 </html>

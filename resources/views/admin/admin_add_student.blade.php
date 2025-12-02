@@ -492,9 +492,6 @@
         <div class="sections-grid" id="sections-grid"></div>
 
         <div class="action-buttons">
-            <button class="btn btn-outline">
-                <i class="fas fa-file-export mr-2"></i> Export Sections
-            </button>
             <button class="btn btn-primary">
                 <i class="fas fa-save mr-2"></i> Save All Changes
             </button>
@@ -511,51 +508,86 @@
                 <button class="btn btn-outline" id="back-to-sections">
                     <i class="fas fa-arrow-left mr-2"></i> Back to Sections
                 </button>
-                <button class="btn btn-primary" id="download-template">
-                    <i class="fas fa-download mr-2"></i> Download Template
+                <button class="btn btn-primary" id="import-excel-btn">
+                    <i class="fas fa-file-import mr-2"></i> Import Excel
                 </button>
             </div>
         </div>
 
-        <div class="upload-area" id="upload-area">
-            <div class="upload-icon">
-                <i class="fas fa-file-excel"></i>
+        <div class="student-selection-container">
+            <!-- Available Students -->
+            <div class="selection-card">
+                <div class="selection-header">
+                    <div class="selection-title">
+                        <i class="fas fa-user-friends"></i>
+                        <h3>Available Students</h3>
+                    </div>
+                    <div class="selected-count">
+                        <span id="selected-count">0</span> selected
+                    </div>
+                </div>
+                <div class="table-container" style="max-height: 400px;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th class="w-12"></th>
+                                <th>Student ID</th>
+                                <th>Full Name</th>
+                                <th>Program</th>
+                                <th>Year</th>
+                            </tr>
+                        </thead>
+                        <tbody id="available-students-table">
+                            <!-- Students will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 flex justify-between items-center">
+                    <div class="text-sm text-gray-600">
+                        Showing <span id="available-count">0</span> available students
+                    </div>
+                    <button class="btn btn-outline btn-sm" id="select-all-btn">
+                        <i class="fas fa-check-double mr-1"></i> Select All
+                    </button>
+                </div>
             </div>
-            <div class="upload-text">
-                <h3>Upload Student Excel File</h3>
-                <p>Drag & drop your Excel file here or click to browse</p>
-                <p class="text-sm text-gray-500">Supported format: .xlsx, .xls (Max 40 students per section)</p>
-            </div>
-            <input type="file" id="file-input" class="hidden" accept=".xlsx, .xls">
-            <button class="btn btn-primary mt-4" id="browse-btn">
-                <i class="fas fa-folder-open mr-2"></i> Browse Files
-            </button>
-        </div>
 
-        <div class="student-list mt-8">
-            <h3 class="text-xl font-bold mb-4 text-gray-800 flex items-center gap-2">
-                <i class="fas fa-list" style="color: #14b8a6;"></i> Enrolled Students
-            </h3>
-            <div class="table-container">
-                <table class="data-table">
-                    <thead>
-                        <tr>
-                            <th>Student ID</th>
-                            <th>Full Name</th>
-                            <th>Email</th>
-                            <th>Program</th>
-                            <th>Year</th>
-                            <th>Status</th>
-                        </tr>
-                    </thead>
-                    <tbody id="student-table-body"></tbody>
-                </table>
+            <!-- Selected Students -->
+            <div class="selection-card">
+                <div class="selection-header">
+                    <div class="selection-title">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>Selected Students</h3>
+                    </div>
+                    <div class="selected-count">
+                        Capacity: <span id="section-capacity">40</span>
+                    </div>
+                </div>
+                <div class="table-container" style="max-height: 400px;">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Student ID</th>
+                                <th>Full Name</th>
+                                <th>Program</th>
+                                <th>Year</th>
+                                <th class="w-20">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="selected-students-table">
+                            <!-- Selected students will appear here -->
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-4 text-sm text-gray-600">
+                    <span id="selected-total">0</span> students selected
+                </div>
             </div>
         </div>
 
         <div class="action-buttons">
-            <button class="btn btn-outline">
-                <i class="fas fa-sync-alt mr-2"></i> Reset
+            <button class="btn btn-outline" id="reset-selection">
+                <i class="fas fa-sync-alt mr-2"></i> Reset Selection
             </button>
             <button class="btn btn-success" id="confirm-enrollment">
                 <i class="fas fa-check-circle mr-2"></i> Confirm Enrollment
@@ -564,28 +596,28 @@
     </div>
 
 
-    <script>
+   <script>
         // Sample data
         const coursesData = {
             'CS101': {
                 name: 'Introduction to Programming',
                 sections: [
-                    { code: 'A', capacity: 40, enrolled: 38, schedule: 'Mon-Wed-Fri 10:00 AM', location: 'Room 101' },
-                    { code: 'B', capacity: 40, enrolled: 35, schedule: 'Tue-Thu 2:00 PM', location: 'Room 102' },
-                    { code: 'C', capacity: 40, enrolled: 0, schedule: 'Mon-Wed 4:00 PM', location: 'Room 103' }
+                    { code: 'A', capacity: 40, enrolled: 38, schedule: 'Mon-Wed-Fri 10:00 AM', location: 'Room 101', students: [] },
+                    { code: 'B', capacity: 40, enrolled: 35, schedule: 'Tue-Thu 2:00 PM', location: 'Room 102', students: [] },
+                    { code: 'C', capacity: 40, enrolled: 0, schedule: 'Mon-Wed 4:00 PM', location: 'Room 103', students: [] }
                 ]
             },
             'CS201': {
                 name: 'Data Structures',
                 sections: [
-                    { code: 'A', capacity: 40, enrolled: 40, schedule: 'Mon-Wed-Fri 9:00 AM', location: 'Lab 201' },
-                    { code: 'B', capacity: 40, enrolled: 32, schedule: 'Tue-Thu 11:00 AM', location: 'Lab 202' }
+                    { code: 'A', capacity: 40, enrolled: 40, schedule: 'Mon-Wed-Fri 9:00 AM', location: 'Lab 201', students: [] },
+                    { code: 'B', capacity: 40, enrolled: 32, schedule: 'Tue-Thu 11:00 AM', location: 'Lab 202', students: [] }
                 ]
             },
             'CS301': {
                 name: 'Algorithms',
                 sections: [
-                    { code: 'A', capacity: 40, enrolled: 28, schedule: 'Mon-Wed 3:00 PM', location: 'Room 301' }
+                    { code: 'A', capacity: 40, enrolled: 28, schedule: 'Mon-Wed 3:00 PM', location: 'Room 301', students: [] }
                 ]
             },
             'EE101': {
@@ -594,19 +626,25 @@
             }
         };
 
-        // Sample student data
-        const sampleStudents = [
-            { id: 'S001', name: 'Alice Johnson', email: 'alice.johnson@student.edu', program: 'Computer Science', year: '2' },
-            { id: 'S002', name: 'Michael Brown', email: 'michael.brown@student.edu', program: 'Computer Science', year: '2' },
-            { id: 'S003', name: 'Sarah Williams', email: 'sarah.williams@student.edu', program: 'Computer Science', year: '2' },
-            { id: 'S004', name: 'David Miller', email: 'david.miller@student.edu', program: 'Computer Science', year: '2' },
-            { id: 'S005', name: 'Emily Davis', email: 'emily.davis@student.edu', program: 'Computer Science', year: '2' }
+        // Sample unenrolled students data (this would come from your database)
+        const unenrolledStudents = [
+            { id: 'S1001', name: 'John Smith', email: 'john.smith@student.edu', program: 'Computer Science', year: '2' },
+            { id: 'S1002', name: 'Emma Watson', email: 'emma.watson@student.edu', program: 'Computer Science', year: '2' },
+            { id: 'S1003', name: 'Michael Brown', email: 'michael.brown@student.edu', program: 'Computer Science', year: '3' },
+            { id: 'S1004', name: 'Sarah Johnson', email: 'sarah.johnson@student.edu', program: 'Computer Science', year: '2' },
+            { id: 'S1005', name: 'David Wilson', email: 'david.wilson@student.edu', program: 'Computer Science', year: '3' },
+            { id: 'S1006', name: 'Lisa Anderson', email: 'lisa.anderson@student.edu', program: 'Computer Science', year: '1' },
+            { id: 'S1007', name: 'Robert Taylor', email: 'robert.taylor@student.edu', program: 'Computer Science', year: '2' },
+            { id: 'S1008', name: 'Jennifer Lee', email: 'jennifer.lee@student.edu', program: 'Computer Science', year: '3' },
+            { id: 'S1009', name: 'Thomas Clark', email: 'thomas.clark@student.edu', program: 'Computer Science', year: '2' },
+            { id: 'S1010', name: 'Maria Garcia', email: 'maria.garcia@student.edu', program: 'Computer Science', year: '1' }
         ];
 
         // Current state
         let currentCourse = '';
         let currentSection = '';
-        let currentStudents = [];
+        let selectedStudents = new Set();
+        let availableStudents = [...unenrolledStudents];
 
         // DOM Elements
         const coursesList = document.getElementById('courses-list');
@@ -620,12 +658,16 @@
         const courseNameSpan = document.getElementById('course-name');
         const sectionNameSpan = document.getElementById('section-name');
         const sectionForm = document.getElementById('sectionForm');
-        const uploadArea = document.getElementById('upload-area');
-        const fileInput = document.getElementById('file-input');
-        const browseBtn = document.getElementById('browse-btn');
-        const studentTableBody = document.getElementById('student-table-body');
+        const availableStudentsTable = document.getElementById('available-students-table');
+        const selectedStudentsTable = document.getElementById('selected-students-table');
+        const selectedCountSpan = document.getElementById('selected-count');
+        const availableCountSpan = document.getElementById('available-count');
+        const selectedTotalSpan = document.getElementById('selected-total');
+        const sectionCapacitySpan = document.getElementById('section-capacity');
+        const selectAllBtn = document.getElementById('select-all-btn');
+        const resetSelectionBtn = document.getElementById('reset-selection');
         const confirmEnrollmentBtn = document.getElementById('confirm-enrollment');
-        const downloadTemplateBtn = document.getElementById('download-template');
+        const importExcelBtn = document.getElementById('import-excel-btn');
 
         // Helper function to show/hide elements based on state
         function setView(showElement, hideElement1, hideElement2) {
@@ -643,7 +685,7 @@
             // Update breadcrumb
             document.querySelector('.breadcrumb span').innerHTML = `Section Management for ${courseCode}`;
             
-            // Show section management (using hidden utility class equivalent to original display:none/block)
+            // Show section management
             setView(sectionManagement, coursesList, studentEnrollment);
             
             // Hide add section form when switching courses
@@ -653,7 +695,7 @@
             renderSections();
         }
 
-        // Render sections grid
+        // Render sections grid with expandable student lists
         function renderSections() {
             sectionsGrid.innerHTML = '';
             const sections = coursesData[currentCourse].sections;
@@ -671,51 +713,71 @@
             
             sections.forEach(section => {
                 const sectionCard = document.createElement('div');
-                sectionCard.className = 'section-card bg-white rounded-xl p-5 shadow-md transition-all duration-300 ease-in-out border-l-4 border-warning hover:translate-y-[-3px] hover:shadow-lg';
+                sectionCard.className = 'section-card';
                 sectionCard.dataset.section = section.code;
                 
                 const enrollmentPercent = (section.enrolled / section.capacity) * 100;
                 let statusColor, bgColor;
                 if (enrollmentPercent >= 90) {
-                    statusColor = 'text-accent'; 
-                    bgColor = 'bg-[#fdedec]';
+                    statusColor = 'text-red-500'; 
+                    bgColor = 'bg-red-50';
                 } else if (enrollmentPercent >= 70) {
-                    statusColor = 'text-warning';
-                    bgColor = 'bg-[#fef5e6]';
+                    statusColor = 'text-yellow-500';
+                    bgColor = 'bg-yellow-50';
                 } else {
-                    statusColor = 'text-success';
-                    bgColor = 'bg-[#e8f6f3]';
+                    statusColor = 'text-green-500';
+                    bgColor = 'bg-green-50';
+                }
+                
+                // Generate enrolled students list HTML
+                let enrolledStudentsHTML = '';
+                if (section.enrolled > 0) {
+                    enrolledStudentsHTML = `
+                        <div class="toggle-expand" onclick="toggleStudentList(this)">
+                            <i class="fas fa-chevron-down"></i>
+                            <span>Show ${section.enrolled} enrolled students</span>
+                        </div>
+                        <div class="expanded-student-list hidden">
+                            ${section.students.map((student, index) => `
+                                <div class="expanded-student-item">
+                                    <div class="expanded-avatar">${student.name.charAt(0)}</div>
+                                    <div>
+                                        <div class="font-medium">${student.name}</div>
+                                        <div class="text-xs text-gray-500">${student.id} • ${student.program}</div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
                 }
                 
                 sectionCard.innerHTML = `
-                    <div class="section-card-header flex justify-between items-start mb-4">
+                    <div class="section-card-header">
                         <div class="section-info">
-                            <h3 class="text-secondary font-semibold mb-1">Section ${section.code}</h3>
-                            <div class="student-count flex items-center gap-1 mt-2 text-primary font-semibold text-sm">
+                            <h3>Section ${section.code}</h3>
+                            <div class="student-count">
                                 <i class="fas fa-user-graduate"></i>
                                 <span>${section.enrolled}/${section.capacity} students</span>
                             </div>
                         </div>
-                        <div class="badge ${bgColor} ${statusColor} px-2 py-1 rounded-full text-xs font-semibold">
+                        <div class="badge ${bgColor} ${statusColor}">
                             ${Math.round(enrollmentPercent)}% Full
                         </div>
                     </div>
                     <div class="course-details">
-                        <div class="detail-item flex justify-between mb-2 pb-2 border-b border-gray-100 text-sm">
-                            <span class="text-gray-500">Schedule:</span>
-                            <span class="text-secondary font-medium">${section.schedule}</span>
+                        <div class="detail-item">
+                            <span>Schedule:</span>
+                            <span>${section.schedule}</span>
                         </div>
-                        <div class="detail-item flex justify-between mb-2 pb-2 border-b border-gray-100 text-sm">
-                            <span class="text-gray-500">Location:</span>
-                            <span class="text-secondary font-medium">${section.location}</span>
+                        <div class="detail-item">
+                            <span>Location:</span>
+                            <span>${section.location}</span>
                         </div>
                     </div>
-                    <div class="section-actions flex gap-3 mt-4">
-                        <button class="btn btn-primary bg-primary text-white px-3 py-1 text-sm rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#2980b9] enroll-students-btn">
+                    ${enrolledStudentsHTML}
+                    <div class="section-actions">
+                        <button class="btn btn-primary btn-sm enroll-students-btn">
                             <i class="fas fa-user-plus mr-1"></i> Enroll Students
-                        </button>
-                        <button class="btn btn-outline border border-primary text-primary px-3 py-1 text-sm rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] view-students-btn">
-                            <i class="fas fa-eye mr-1"></i> View
                         </button>
                     </div>
                 `;
@@ -739,6 +801,22 @@
             });
         }
 
+        // Toggle student list visibility
+        window.toggleStudentList = function(element) {
+            const studentList = element.nextElementSibling;
+            const icon = element.querySelector('i');
+            
+            if (studentList.classList.contains('hidden')) {
+                studentList.classList.remove('hidden');
+                icon.className = 'fas fa-chevron-up';
+                element.querySelector('span').textContent = 'Hide enrolled students';
+            } else {
+                studentList.classList.add('hidden');
+                icon.className = 'fas fa-chevron-down';
+                element.querySelector('span').textContent = 'Show enrolled students';
+            }
+        };
+
         // Enroll students in a section
         function enrollStudentsInSection(sectionCode) {
             currentSection = sectionCode;
@@ -747,14 +825,23 @@
             // Update breadcrumb
             document.querySelector('.breadcrumb span').innerHTML = `Student Enrollment - ${currentCourse} Section ${sectionCode}`;
             
+            // Get section details
+            const section = coursesData[currentCourse].sections.find(s => s.code === sectionCode);
+            sectionCapacitySpan.textContent = section.capacity;
+            
+            // Filter out already enrolled students
+            const enrolledStudentIds = new Set(section.students.map(s => s.id));
+            availableStudents = unenrolledStudents.filter(student => !enrolledStudentIds.has(student.id));
+            
+            // Reset selection
+            selectedStudents.clear();
+            
             // Show student enrollment
             setView(studentEnrollment, sectionManagement, coursesList);
-
-            // Load sample students for demonstration
-            // This is meant to simulate loading a fresh or partial list for enrollment upload
-            currentStudents = [...sampleStudents.slice(0, 5)]; 
             
-            renderStudentTable();
+            // Render student tables
+            renderAvailableStudents();
+            renderSelectedStudents();
         }
 
         // View students in a section
@@ -765,52 +852,160 @@
             // Update breadcrumb
             document.querySelector('.breadcrumb span').innerHTML = `Student Enrollment - ${currentCourse} Section ${sectionCode}`;
             
+            // Get section details
+            const section = coursesData[currentCourse].sections.find(s => s.code === sectionCode);
+            sectionCapacitySpan.textContent = section.capacity;
+            
+            // Show enrolled students in available table (view mode)
+            availableStudents = [...section.students];
+            
             // Show student enrollment
             setView(studentEnrollment, sectionManagement, coursesList);
             
-            // Get enrolled students count for this section
-            const section = coursesData[currentCourse].sections.find(s => s.code === sectionCode);
-            currentStudents = Array.from({length: section.enrolled}, (_, i) => ({
-                id: `S${1000 + i}`,
-                name: `Student ${i + 1}`,
-                email: `student${i + 1}@student.edu`,
-                program: 'Computer Science',
-                year: '2'
-            }));
+            // Render in view mode (no selection)
+            renderAvailableStudents(true);
+            renderSelectedStudents();
             
-            renderStudentTable();
+            // Disable selection buttons in view mode
+            selectAllBtn.disabled = true;
+            selectAllBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            confirmEnrollmentBtn.disabled = true;
+            confirmEnrollmentBtn.classList.add('opacity-50', 'cursor-not-allowed');
+            importExcelBtn.textContent = 'View Mode';
         }
 
-        // Render student table
-        function renderStudentTable() {
-            studentTableBody.innerHTML = '';
+        // Render available students table
+        function renderAvailableStudents(viewMode = false) {
+            availableStudentsTable.innerHTML = '';
+            availableCountSpan.textContent = availableStudents.length;
             
-            if (currentStudents.length === 0) {
-                studentTableBody.innerHTML = `
+            if (availableStudents.length === 0) {
+                availableStudentsTable.innerHTML = `
                     <tr>
-                        <td colspan="6" class="text-center text-gray-500 p-10">
-                            <i class="fas fa-user-graduate text-3xl mb-3 block"></i>
-                            No students enrolled yet. Upload an Excel file to enroll students.
+                        <td colspan="5" class="text-center p-8 text-gray-500">
+                            <i class="fas fa-user-slash text-3xl mb-3 block"></i>
+                            ${viewMode ? 'No students enrolled in this section.' : 'No available students found.'}
                         </td>
                     </tr>
                 `;
                 return;
             }
             
-            currentStudents.forEach(student => {
+            availableStudents.forEach((student, index) => {
+                const isSelected = selectedStudents.has(student.id);
                 const row = document.createElement('tr');
-                row.className = 'hover:bg-gray-50';
+                row.className = isSelected ? 'bg-teal-50' : '';
                 row.innerHTML = `
-                    <td class="p-3 border-b border-gray-100 text-sm">${student.id}</td>
-                    <td class="p-3 border-b border-gray-100 text-sm">${student.name}</td>
-                    <td class="p-3 border-b border-gray-100 text-sm">${student.email}</td>
-                    <td class="p-3 border-b border-gray-100 text-sm">${student.program}</td>
-                    <td class="p-3 border-b border-gray-100 text-sm">Year ${student.year}</td>
-                    <td class="p-3 border-b border-gray-100 text-sm"><span class="badge bg-[#e8f6f3] text-success px-2 py-1 rounded-full text-xs font-semibold">Enrolled</span></td>
+                    <td class="p-4">
+                        ${!viewMode ? `
+                            <input type="checkbox" class="student-checkbox" 
+                                   data-student-id="${student.id}"
+                                   ${isSelected ? 'checked' : ''}>
+                        ` : ''}
+                    </td>
+                    <td class="p-4 font-medium">${student.id}</td>
+                    <td class="p-4">
+                        <div class="flex items-center gap-3">
+                            <div class="w-8 h-8 rounded-full bg-teal-100 flex items-center justify-center text-teal-600 font-bold text-sm">
+                                ${student.name.charAt(0)}
+                            </div>
+                            <div>
+                                <div class="font-medium">${student.name}</div>
+                                <div class="text-xs text-gray-500">${student.email}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-4">${student.program}</td>
+                    <td class="p-4">Year ${student.year}</td>
                 `;
-                studentTableBody.appendChild(row);
+                
+                if (!viewMode) {
+                    const checkbox = row.querySelector('.student-checkbox');
+                    checkbox.addEventListener('change', function() {
+                        toggleStudentSelection(student.id, this.checked);
+                    });
+                    
+                    row.addEventListener('click', function(e) {
+                        if (!e.target.matches('input')) {
+                            checkbox.checked = !checkbox.checked;
+                            toggleStudentSelection(student.id, checkbox.checked);
+                        }
+                    });
+                }
+                
+                availableStudentsTable.appendChild(row);
             });
         }
+
+        // Render selected students table
+        function renderSelectedStudents() {
+            selectedStudentsTable.innerHTML = '';
+            selectedCountSpan.textContent = selectedStudents.size;
+            selectedTotalSpan.textContent = selectedStudents.size;
+            
+            if (selectedStudents.size === 0) {
+                selectedStudentsTable.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="text-center p-8 text-gray-500">
+                            <i class="fas fa-user-plus text-3xl mb-3 block"></i>
+                            No students selected. Select students from the available list.
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            selectedStudents.forEach(studentId => {
+                const student = availableStudents.find(s => s.id === studentId) || 
+                               unenrolledStudents.find(s => s.id === studentId);
+                if (!student) return;
+                
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="p-4 font-medium">${student.id}</td>
+                    <td class="p-4">${student.name}</td>
+                    <td class="p-4">${student.program}</td>
+                    <td class="p-4">Year ${student.year}</td>
+                    <td class="p-4">
+                        <button class="text-red-500 hover:text-red-700" onclick="removeStudent('${student.id}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </td>
+                `;
+                selectedStudentsTable.appendChild(row);
+            });
+        }
+
+        // Toggle student selection
+        function toggleStudentSelection(studentId, selected) {
+            const section = coursesData[currentCourse].sections.find(s => s.code === currentSection);
+            const capacity = section.capacity;
+            
+            if (selected) {
+                if (selectedStudents.size >= capacity) {
+                    alert(`Section capacity is ${capacity} students. Cannot select more.`);
+                    // Uncheck the checkbox
+                    const checkbox = document.querySelector(`input[data-student-id="${studentId}"]`);
+                    if (checkbox) checkbox.checked = false;
+                    return;
+                }
+                selectedStudents.add(studentId);
+            } else {
+                selectedStudents.delete(studentId);
+            }
+            
+            renderAvailableStudents();
+            renderSelectedStudents();
+        }
+
+        // Remove student from selection
+        window.removeStudent = function(studentId) {
+            selectedStudents.delete(studentId);
+            const checkbox = document.querySelector(`input[data-student-id="${studentId}"]`);
+            if (checkbox) checkbox.checked = false;
+            renderAvailableStudents();
+            renderSelectedStudents();
+        };
 
         // Event Listeners
         document.addEventListener('DOMContentLoaded', function() {
@@ -832,12 +1027,11 @@
             backToSectionsBtn.addEventListener('click', function() {
                 setView(sectionManagement, studentEnrollment, coursesList);
                 document.querySelector('.breadcrumb span').innerHTML = `Section Management for ${currentCourse}`;
-                renderSections(); // Re-render to show updated counts
+                renderSections();
             });
             
             // Add section button
             addSectionBtn.addEventListener('click', function() {
-                // Tailwind utility for toggle display
                 addSectionForm.style.display = addSectionForm.style.display === 'none' ? 'grid' : 'none';
             });
             
@@ -856,7 +1050,8 @@
                     capacity: parseInt(capacity),
                     enrolled: 0,
                     schedule: schedule,
-                    location: location
+                    location: location,
+                    students: []
                 });
                 
                 // Re-render sections
@@ -869,120 +1064,93 @@
                 alert(`Section ${sectionCode} created successfully!`);
             });
             
-            // File upload handling
-            browseBtn.addEventListener('click', function() {
-                fileInput.click();
-            });
-            
-            fileInput.addEventListener('change', function(e) {
-                if (this.files.length > 0) {
-                    const file = this.files[0];
-                    handleFileUpload(file);
-                }
-            });
-            
-            // Drag and Drop listeners
-            uploadArea.addEventListener('dragover', function(e) {
-                e.preventDefault();
-                this.classList.add('border-success', 'bg-[#e8f6f3]');
-                this.querySelector('.upload-icon i').classList.add('text-success');
-                this.classList.remove('border-gray-300', 'bg-gray-50');
-                this.querySelector('.upload-icon i').classList.remove('text-gray-500');
-            });
-            
-            uploadArea.addEventListener('dragleave', function() {
-                this.classList.remove('border-success', 'bg-[#e8f6f3]');
-                this.querySelector('.upload-icon i').classList.remove('text-success');
-                this.classList.add('border-gray-300', 'bg-gray-50');
-                this.querySelector('.upload-icon i').classList.add('text-gray-500');
-            });
-            
-            uploadArea.addEventListener('drop', function(e) {
-                e.preventDefault();
-                this.classList.remove('border-success', 'bg-[#e8f6f3]');
-                this.querySelector('.upload-icon i').classList.remove('text-success');
-                this.classList.add('border-gray-300', 'bg-gray-50');
-                this.querySelector('.upload-icon i').classList.add('text-gray-500');
+            // Select all button
+            selectAllBtn.addEventListener('click', function() {
+                const section = coursesData[currentCourse].sections.find(s => s.code === currentSection);
+                const capacity = section.capacity;
                 
-                if (e.dataTransfer.files.length > 0) {
-                    const file = e.dataTransfer.files[0];
-                    handleFileUpload(file);
+                if (availableStudents.length === 0) return;
+                
+                if (availableStudents.length > capacity - selectedStudents.size) {
+                    alert(`Only ${capacity - selectedStudents.size} more students can be selected (capacity limit).`);
+                    return;
                 }
+                
+                availableStudents.forEach(student => {
+                    if (!selectedStudents.has(student.id)) {
+                        selectedStudents.add(student.id);
+                    }
+                });
+                
+                renderAvailableStudents();
+                renderSelectedStudents();
+            });
+            
+            // Reset selection button
+            resetSelectionBtn.addEventListener('click', function() {
+                selectedStudents.clear();
+                renderAvailableStudents();
+                renderSelectedStudents();
             });
             
             // Confirm enrollment
             confirmEnrollmentBtn.addEventListener('click', function() {
-                if (currentStudents.length === 0) {
-                    alert('No students to enroll. Please upload an Excel file first.');
+                if (selectedStudents.size === 0) {
+                    alert('Please select at least one student to enroll.');
                     return;
                 }
                 
-                // Update enrolled count in the section
                 const section = coursesData[currentCourse].sections.find(s => s.code === currentSection);
-                if (section) {
-                    section.enrolled = currentStudents.length;
-                }
+                if (!section) return;
                 
-                alert(`Successfully enrolled ${currentStudents.length} students in Section ${currentSection}!`);
+                // Add selected students to section
+                selectedStudents.forEach(studentId => {
+                    const student = unenrolledStudents.find(s => s.id === studentId);
+                    if (student && !section.students.some(s => s.id === studentId)) {
+                        section.students.push(student);
+                    }
+                });
+                
+                // Update enrolled count
+                section.enrolled = section.students.length;
+                
+                // Remove enrolled students from available list
+                availableStudents = availableStudents.filter(student => !selectedStudents.has(student.id));
+                
+                // Show success message
+                alert(`Successfully enrolled ${selectedStudents.size} students in Section ${currentSection}!`);
                 
                 // Go back to sections
                 setView(sectionManagement, studentEnrollment, coursesList);
                 document.querySelector('.breadcrumb span').innerHTML = `Section Management for ${currentCourse}`;
                 
-                // Re-render sections to update counts
+                // Re-render sections to update counts and show new students
                 renderSections();
-            });
-            
-            // Download template
-            downloadTemplateBtn.addEventListener('click', function() {
-                alert('Excel template downloaded! The template includes columns for Student ID, Full Name, Email, Program, and Year.');
-                // In a real application, this would trigger a file download
-            });
-        });
-
-        // Handle file upload
-        function handleFileUpload(file) {
-            if (!file.name.match(/\.(xlsx|xls)$/)) {
-                alert('Please upload a valid Excel file (.xlsx or .xls)');
-                return;
-            }
-            
-            // Simulate file processing
-            const uploadIcon = uploadArea.querySelector('.upload-icon i');
-            const uploadText = uploadArea.querySelector('.upload-text h3');
-            
-            uploadArea.classList.add('border-success', 'bg-[#e8f6f3]');
-            uploadArea.classList.remove('border-gray-300', 'bg-gray-50');
-            uploadIcon.className = 'fas fa-spinner fa-spin text-success';
-            uploadText.textContent = 'Processing File...';
-            
-            setTimeout(() => {
-                // Simulate successful processing
-                uploadArea.classList.remove('border-success', 'bg-[#e8f6f3]');
-                uploadArea.classList.add('border-gray-300', 'bg-gray-50');
-                uploadIcon.className = 'fas fa-file-excel text-success';
-                uploadText.textContent = 'File Uploaded Successfully!';
                 
-                // Add more sample students to simulate import
-                const newStudents = Array.from({length: 35}, (_, i) => ({
-                    id: `S${1006 + i}`,
-                    name: `New Student ${i + 1}`,
-                    email: `new.student${i + 1}@student.edu`,
+                // Reset selection
+                selectedStudents.clear();
+            });
+            
+            // Import Excel button
+            importExcelBtn.addEventListener('click', function() {
+                // This would open a file dialog in a real implementation
+                alert('Excel import feature would open a file dialog here. For now, use the student selection interface.');
+                
+                // Simulate importing more students
+                const newStudents = Array.from({length: 5}, (_, i) => ({
+                    id: `S${1011 + i}`,
+                    name: `Imported Student ${i + 1}`,
+                    email: `imported.student${i + 1}@student.edu`,
                     program: 'Computer Science',
                     year: '2'
                 }));
                 
-                currentStudents = [...sampleStudents.slice(0, 5), ...newStudents];
-                renderStudentTable();
+                // Add to available students
+                availableStudents.push(...newStudents);
+                renderAvailableStudents();
                 
-                alert(`Successfully imported ${newStudents.length} students from Excel file!`);
-                
-                // Reset upload area after a delay
-                setTimeout(() => {
-                    uploadIcon.className = 'fas fa-file-excel text-gray-500';
-                    uploadText.textContent = 'Upload Student Excel File';
-                }, 2000);
-            }, 2000);
-        }
+                alert('5 new students imported successfully!');
+            });
+        });
     </script>
 @endsection
