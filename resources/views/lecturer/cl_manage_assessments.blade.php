@@ -123,23 +123,23 @@
                         <span>Quiz 1</span>
                         <div class="item-clo-plos flex flex-wrap gap-1 ml-4 max-w-xs">
                             <span class="clo-plo-badge bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO1</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO1</span>
+                                <span>CLO1→PLO1</span>
+                                <span class="text-xs font-bold">(3 marks, 3%)</span>
                             </span>
                             <span class="clo-plo-badge bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO1</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO2</span>
+                                <span>CLO1→PLO2</span>
+                                <span class="text-xs font-bold">(2 marks, 2%)</span>
                             </span>
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO1</span>
+                                <span>CLO2→PLO1</span>
+                                <span class="text-xs font-bold">(5 marks, 5%)</span>
                             </span>
                         </div>
                     </div>
-                    <div class="item-marks w-12 text-center font-semibold text-secondary text-sm">5%</div>
+                    <div class="item-marks w-20 text-center font-semibold text-secondary text-sm flex flex-col">
+                        <span>10 marks</span>
+                        <span class="text-xs text-gray-500">10%</span>
+                    </div>
                     <div class="item-actions flex gap-1 sm:w-full sm:justify-end lg:w-auto">
                         <button class="btn btn-outline border border-primary text-primary px-2 py-1 text-xs rounded-lg transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] btn-sm edit-item" data-type="quiz">
                             <i class="fas fa-edit"></i>
@@ -154,13 +154,15 @@
                         <span>Quiz 2</span>
                         <div class="item-clo-plos flex flex-wrap gap-1 ml-4 max-w-xs">
                             <span class="clo-plo-badge bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO1</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO1</span>
+                                <span>CLO1→PLO1</span>
+                                <span class="text-xs font-bold">(5 marks, 5%)</span>
                             </span>
                         </div>
                     </div>
-                    <div class="item-marks w-12 text-center font-semibold text-secondary text-sm">5%</div>
+                    <div class="item-marks w-20 text-center font-semibold text-secondary text-sm flex flex-col">
+                        <span>5 marks</span>
+                        <span class="text-xs text-gray-500">5%</span>
+                    </div>
                     <div class="item-actions flex gap-1 sm:w-full sm:justify-end lg:w-auto">
                         <button class="btn btn-outline border border-primary text-primary px-2 py-1 text-xs rounded-lg transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] btn-sm edit-item" data-type="quiz">
                             <i class="fas fa-edit"></i>
@@ -175,13 +177,15 @@
                         <span>Quiz 3</span>
                         <div class="item-clo-plos flex flex-wrap gap-1 ml-4 max-w-xs">
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO2</span>
+                                <span>CLO2→PLO2</span>
+                                <span class="text-xs font-bold">(5 marks, 5%)</span>
                             </span>
                         </div>
                     </div>
-                    <div class="item-marks w-12 text-center font-semibold text-secondary text-sm">5%</div>
+                    <div class="item-marks w-20 text-center font-semibold text-secondary text-sm flex flex-col">
+                        <span>5 marks</span>
+                        <span class="text-xs text-gray-500">5%</span>
+                    </div>
                     <div class="item-actions flex gap-1 sm:w-full sm:justify-end lg:w-auto">
                         <button class="btn btn-outline border border-primary text-primary px-2 py-1 text-xs rounded-lg transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] btn-sm edit-item" data-type="quiz">
                             <i class="fas fa-edit"></i>
@@ -238,23 +242,23 @@
                         <span>Lab Test 1</span>
                         <div class="item-clo-plos flex flex-wrap gap-1 ml-4 max-w-xs">
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO3</span>
+                                <span>CLO2→PLO3</span>
+                                <span class="text-xs font-bold">(6 marks, 6%)</span>
                             </span>
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO5</span>
+                                <span>CLO2→PLO5</span>
+                                <span class="text-xs font-bold">(4 marks, 4%)</span>
                             </span>
                             <span class="clo-plo-badge bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO3</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO3</span>
+                                <span>CLO3→PLO3</span>
+                                <span class="text-xs font-bold">(10 marks, 10%)</span>
                             </span>
                         </div>
                     </div>
-                    <div class="item-marks w-12 text-center font-semibold text-secondary text-sm">10%</div>
+                    <div class="item-marks w-20 text-center font-semibold text-secondary text-sm flex flex-col">
+                        <span>20 marks</span>
+                        <span class="text-xs text-gray-500">20%</span>
+                    </div>
                     <div class="item-actions flex gap-1 sm:w-full sm:justify-end lg:w-auto">
                         <button class="btn btn-outline border border-primary text-primary px-2 py-1 text-xs rounded-lg transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] btn-sm edit-item" data-type="practical">
                             <i class="fas fa-edit"></i>
@@ -269,13 +273,15 @@
                         <span>Lab Test 2</span>
                         <div class="item-clo-plos flex flex-wrap gap-1 ml-4 max-w-xs">
                             <span class="clo-plo-badge bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO3</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO3</span>
+                                <span>CLO3→PLO3</span>
+                                <span class="text-xs font-bold">(10 marks, 10%)</span>
                             </span>
                         </div>
                     </div>
-                    <div class="item-marks w-12 text-center font-semibold text-secondary text-sm">10%</div>
+                    <div class="item-marks w-20 text-center font-semibold text-secondary text-sm flex flex-col">
+                        <span>10 marks</span>
+                        <span class="text-xs text-gray-500">10%</span>
+                    </div>
                     <div class="item-actions flex gap-1 sm:w-full sm:justify-end lg:w-auto">
                         <button class="btn btn-outline border border-primary text-primary px-2 py-1 text-xs rounded-lg transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] btn-sm edit-item" data-type="practical">
                             <i class="fas fa-edit"></i>
@@ -332,23 +338,23 @@
                         <span>Assignment 1</span>
                         <div class="item-clo-plos flex flex-wrap gap-1 ml-4 max-w-xs">
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO2</span>
+                                <span>CLO2→PLO2</span>
+                                <span class="text-xs font-bold">(7 marks, 7%)</span>
                             </span>
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO3</span>
+                                <span>CLO2→PLO3</span>
+                                <span class="text-xs font-bold">(3 marks, 3%)</span>
                             </span>
                             <span class="clo-plo-badge bg-purple-100 text-purple-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO4</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO4</span>
+                                <span>CLO4→PLO4</span>
+                                <span class="text-xs font-bold">(5 marks, 5%)</span>
                             </span>
                         </div>
                     </div>
-                    <div class="item-marks w-12 text-center font-semibold text-secondary text-sm">15%</div>
+                    <div class="item-marks w-20 text-center font-semibold text-secondary text-sm flex flex-col">
+                        <span>15 marks</span>
+                        <span class="text-xs text-gray-500">15%</span>
+                    </div>
                     <div class="item-actions flex gap-1 sm:w-full sm:justify-end lg:w-auto">
                         <button class="btn btn-outline border border-primary text-primary px-2 py-1 text-xs rounded-lg transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] btn-sm edit-item" data-type="assignment">
                             <i class="fas fa-edit"></i>
@@ -451,28 +457,27 @@
                         <span>Mid-Semester Examination</span>
                         <div class="item-clo-plos flex flex-wrap gap-1 ml-4 max-w-xs">
                             <span class="clo-plo-badge bg-blue-100 text-blue-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO1</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO1</span>
+                                <span>CLO1→PLO1</span>
+                                <span class="text-xs font-bold">(5 marks, 5%)</span>
                             </span>
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO2</span>
+                                <span>CLO2→PLO2</span>
+                                <span class="text-xs font-bold">(8 marks, 8%)</span>
                             </span>
                             <span class="clo-plo-badge bg-green-100 text-green-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO2</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO3</span>
+                                <span>CLO2→PLO3</span>
+                                <span class="text-xs font-bold">(4 marks, 4%)</span>
                             </span>
                             <span class="clo-plo-badge bg-yellow-100 text-yellow-800 px-2 py-0.5 rounded-full text-[0.65rem] font-medium flex items-center gap-1">
-                                <span>CLO3</span>
-                                <span class="text-xs">→</span>
-                                <span>PLO3</span>
+                                <span>CLO3→PLO3</span>
+                                <span class="text-xs font-bold">(3 marks, 3%)</span>
                             </span>
                         </div>
                     </div>
-                    <div class="item-marks w-12 text-center font-semibold text-secondary text-sm">20%</div>
+                    <div class="item-marks w-20 text-center font-semibold text-secondary text-sm flex flex-col">
+                        <span>20 marks</span>
+                        <span class="text-xs text-gray-500">20%</span>
+                    </div>
                     <div class="item-actions flex gap-1 sm:w-full sm:justify-end lg:w-auto">
                         <button class="btn btn-outline border border-primary text-primary px-2 py-1 text-xs rounded-lg transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] btn-sm view-item">
                             <i class="fas fa-eye"></i>
@@ -586,7 +591,7 @@
 </div>
 
 <div class="modal hidden fixed top-0 left-0 w-full h-full bg-black/50 z-[1000] justify-center items-center" id="addAssessmentModal">
-    <div class="modal-content bg-white p-6 rounded-xl w-[700px] max-w-[90%] shadow-lg max-h-[90vh] overflow-y-auto">
+    <div class="modal-content bg-white p-6 rounded-xl w-[800px] max-w-[90%] shadow-lg max-h-[90vh] overflow-y-auto">
         <div class="modal-header flex justify-between items-center mb-4 pb-3 border-b border-gray-200">
             <h3 id="modalTitle" class="text-secondary font-semibold text-xl">Add New Assessment</h3>
             <span class="close text-2xl text-gray-500 cursor-pointer hover:text-accent">&times;</span>
@@ -597,26 +602,17 @@
             <!-- CLO-PLO Mapping Tabs -->
             <div class="clo-plo-mapping mb-6">
                 <div class="tabs flex border-b border-gray-200 mb-4">
-                    <button type="button" class="tab-btn active px-4 py-2 font-medium text-primary border-b-2 border-primary" data-tab="clo-tab">Select CLOs</button>
+                    <button type="button" class="tab-btn active px-4 py-2 font-medium text-primary border-b-2 border-primary" data-tab="basic-tab">Basic Info</button>
+                    <button type="button" class="tab-btn px-4 py-2 font-medium text-gray-500 hover:text-primary" data-tab="clo-tab">Select CLOs</button>
                     <button type="button" class="tab-btn px-4 py-2 font-medium text-gray-500 hover:text-primary" data-tab="plo-tab">Map to PLOs</button>
+                    <button type="button" class="tab-btn px-4 py-2 font-medium text-gray-500 hover:text-primary" data-tab="marks-tab">Assign Marks</button>
                 </div>
                 
-                <!-- CLO Selection Tab -->
-                <div id="clo-tab" class="tab-content active">
+                <!-- Basic Information Tab -->
+                <div id="basic-tab" class="tab-content active">
                     <div class="form-group mb-4">
                         <label for="assessmentName" class="block mb-2 text-secondary font-medium">Assessment Name</label>
                         <input type="text" id="assessmentName" class="w-full p-3 border border-gray-300 rounded-lg text-base transition-all duration-300 ease-in-out focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Enter assessment name" required>
-                    </div>
-                    
-                    <div class="form-row flex gap-4 mb-4 sm:flex-col lg:flex-row">
-                        <div class="form-group flex-1">
-                            <label for="assessmentMarks" class="block mb-2 text-secondary font-medium">Total Marks</label>
-                            <input type="number" id="assessmentMarks" class="w-full p-3 border border-gray-300 rounded-lg text-base transition-all duration-300 ease-in-out focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Enter total marks" min="1" required>
-                        </div>
-                        <div class="form-group flex-1">
-                            <label for="assessmentWeight" class="block mb-2 text-secondary font-medium">Weightage (%)</label>
-                            <input type="number" id="assessmentWeight" class="w-full p-3 border border-gray-300 rounded-lg text-base transition-all duration-300 ease-in-out focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Enter weightage" min="1" max="100" required>
-                        </div>
                     </div>
                     
                     <div class="form-group mb-4">
@@ -643,6 +639,26 @@
                         </div>
                     </div>
                     
+                    <div class="form-row flex gap-4 mb-4 sm:flex-col lg:flex-row">
+                        <div class="form-group flex-1">
+                            <label for="assessmentTotalMarks" class="block mb-2 text-secondary font-medium">Total Marks</label>
+                            <input type="number" id="assessmentTotalMarks" class="w-full p-3 border border-gray-300 rounded-lg text-base transition-all duration-300 ease-in-out focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Enter total marks" min="1" required>
+                        </div>
+                        <div class="form-group flex-1">
+                            <label for="assessmentTotalWeight" class="block mb-2 text-secondary font-medium">Total Weightage (%)</label>
+                            <input type="number" id="assessmentTotalWeight" class="w-full p-3 border border-gray-300 rounded-lg text-base transition-all duration-300 ease-in-out focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" placeholder="Enter total weightage" min="1" max="100" required>
+                        </div>
+                    </div>
+                    
+                    <div class="next-step-btn flex justify-end">
+                        <button type="button" class="btn btn-primary bg-primary text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#2980b9] hover:translate-y-[-2px]" id="nextToCloBtn">
+                            Next: Select CLOs <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- CLO Selection Tab -->
+                <div id="clo-tab" class="tab-content hidden">
                     <div class="form-group mb-4">
                         <label class="block mb-2 text-secondary font-medium">Select CLOs for this Assessment</label>
                         <div class="clo-selection">
@@ -652,7 +668,10 @@
                         </div>
                     </div>
                     
-                    <div class="next-step-btn flex justify-end">
+                    <div class="navigation-buttons flex justify-between">
+                        <button type="button" class="btn btn-outline border border-primary text-primary px-4 py-2 rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] hover:translate-y-[-2px]" id="backToBasicBtn">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to Basic Info
+                        </button>
                         <button type="button" class="btn btn-primary bg-primary text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#2980b9] hover:translate-y-[-2px]" id="nextToPloBtn">
                             Next: Map to PLOs <i class="fas fa-arrow-right ml-2"></i>
                         </button>
@@ -683,6 +702,67 @@
                     <div class="navigation-buttons flex justify-between">
                         <button type="button" class="btn btn-outline border border-primary text-primary px-4 py-2 rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] hover:translate-y-[-2px]" id="backToCloBtn">
                             <i class="fas fa-arrow-left mr-2"></i> Back to CLOs
+                        </button>
+                        <button type="button" class="btn btn-primary bg-primary text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#2980b9] hover:translate-y-[-2px]" id="nextToMarksBtn">
+                            Next: Assign Marks <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Marks Assignment Tab -->
+                <div id="marks-tab" class="tab-content hidden">
+                    <div class="form-group mb-6">
+                        <label class="block mb-4 text-secondary font-medium text-lg">Assign Marks & Percentages to CLO-PLO Pairs</label>
+                        <p class="text-gray-500 text-sm mb-4">Assign marks and percentages to each CLO-PLO pair. The total must match the assessment total.</p>
+                        
+                        <!-- Total Marks Summary -->
+                        <div class="total-summary mb-6 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h4 class="text-secondary font-semibold">Assessment Total</h4>
+                                    <p class="text-gray-500 text-sm">Set in Basic Info tab</p>
+                                </div>
+                                <div class="text-right">
+                                    <div class="text-lg font-bold text-primary" id="totalMarksDisplay">0 marks</div>
+                                    <div class="text-sm text-gray-600" id="totalWeightDisplay">0%</div>
+                                </div>
+                            </div>
+                            <div class="mt-3 pt-3 border-t border-blue-200">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-gray-600">Assigned so far:</span>
+                                    <div class="text-right">
+                                        <span class="font-semibold" id="assignedMarksDisplay">0 marks</span>
+                                        <span class="mx-2">/</span>
+                                        <span class="font-semibold" id="assignedWeightDisplay">0%</span>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <div class="flex justify-between items-center text-sm">
+                                        <span class="text-gray-600">Remaining:</span>
+                                        <div class="text-right">
+                                            <span class="font-semibold text-green-600" id="remainingMarksDisplay">0 marks</span>
+                                            <span class="mx-2">/</span>
+                                            <span class="font-semibold text-green-600" id="remainingWeightDisplay">0%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Marks Assignment Container -->
+                        <div id="marks-assignment-container" class="space-y-4">
+                            <!-- Dynamic marks assignment items will be generated here -->
+                        </div>
+                        
+                        <!-- Validation Message -->
+                        <div id="marks-validation" class="mt-4 p-3 rounded-lg hidden">
+                            <!-- Will show validation messages -->
+                        </div>
+                    </div>
+                    
+                    <div class="navigation-buttons flex justify-between">
+                        <button type="button" class="btn btn-outline border border-primary text-primary px-4 py-2 rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#e8f4fc] hover:translate-y-[-2px]" id="backToPloBtn">
+                            <i class="fas fa-arrow-left mr-2"></i> Back to PLO Mapping
                         </button>
                         <button type="submit" class="btn btn-success bg-success text-white px-4 py-2 rounded-lg font-semibold transition-all duration-300 ease-in-out hover:bg-[#27ae60] hover:translate-y-[-2px]" id="submitAssessment">
                             Add Assessment
@@ -744,51 +824,55 @@
         'Quiz 1': { 
             name: 'Quiz 1', 
             marks: 10, 
-            weight: 5, 
+            weight: 10, 
             description: 'Short quiz covering basic syntax.', 
             type: 'quiz', 
             clos: ['clo1', 'clo2'],
-            ploMapping: {
-                'clo1': ['plo1', 'plo2'],
-                'clo2': ['plo2']
-            }
+            cloPloPairs: [
+                { cloId: 'clo1', ploId: 'plo1', cloCode: 'CLO1', ploCode: 'PLO1', ploColor: 'blue', marks: 3, percentage: 3 },
+                { cloId: 'clo1', ploId: 'plo2', cloCode: 'CLO1', ploCode: 'PLO2', ploColor: 'blue', marks: 2, percentage: 2 },
+                { cloId: 'clo2', ploId: 'plo1', cloCode: 'CLO2', ploCode: 'PLO1', ploColor: 'green', marks: 5, percentage: 5 }
+            ]
         },
         'Lab Test 1': { 
             name: 'Lab Test 1', 
-            marks: 50, 
-            weight: 10, 
+            marks: 20, 
+            weight: 20, 
             description: 'Practical implementation of arrays.', 
             type: 'practical', 
             clos: ['clo2', 'clo3'],
-            ploMapping: {
-                'clo2': ['plo3', 'plo5'],
-                'clo3': ['plo3']
-            }
+            cloPloPairs: [
+                { cloId: 'clo2', ploId: 'plo3', cloCode: 'CLO2', ploCode: 'PLO3', ploColor: 'green', marks: 6, percentage: 6 },
+                { cloId: 'clo2', ploId: 'plo5', cloCode: 'CLO2', ploCode: 'PLO5', ploColor: 'green', marks: 4, percentage: 4 },
+                { cloId: 'clo3', ploId: 'plo3', cloCode: 'CLO3', ploCode: 'PLO3', ploColor: 'yellow', marks: 10, percentage: 10 }
+            ]
         },
         'Assignment 1': { 
             name: 'Assignment 1', 
-            marks: 100, 
+            marks: 15, 
             weight: 15, 
             description: 'Project: Build a simple calculator.', 
             type: 'assignment', 
             clos: ['clo2', 'clo4'],
-            ploMapping: {
-                'clo2': ['plo2', 'plo3'],
-                'clo4': ['plo4']
-            }
+            cloPloPairs: [
+                { cloId: 'clo2', ploId: 'plo2', cloCode: 'CLO2', ploCode: 'PLO2', ploColor: 'green', marks: 7, percentage: 7 },
+                { cloId: 'clo2', ploId: 'plo3', cloCode: 'CLO2', ploCode: 'PLO3', ploColor: 'green', marks: 3, percentage: 3 },
+                { cloId: 'clo4', ploId: 'plo4', cloCode: 'CLO4', ploCode: 'PLO4', ploColor: 'purple', marks: 5, percentage: 5 }
+            ]
         },
         'Mid-Semester Examination': { 
             name: 'Mid-Semester Examination', 
-            marks: 100, 
+            marks: 20, 
             weight: 20, 
             description: 'Comprehensive mid-semester examination covering all topics from weeks 1-6.', 
             type: 'midexam', 
             clos: ['clo1', 'clo2', 'clo3'],
-            ploMapping: {
-                'clo1': ['plo1'],
-                'clo2': ['plo2', 'plo3'],
-                'clo3': ['plo3']
-            }
+            cloPloPairs: [
+                { cloId: 'clo1', ploId: 'plo1', cloCode: 'CLO1', ploCode: 'PLO1', ploColor: 'blue', marks: 5, percentage: 5 },
+                { cloId: 'clo2', ploId: 'plo2', cloCode: 'CLO2', ploCode: 'PLO2', ploColor: 'green', marks: 8, percentage: 8 },
+                { cloId: 'clo2', ploId: 'plo3', cloCode: 'CLO2', ploCode: 'PLO3', ploColor: 'green', marks: 4, percentage: 4 },
+                { cloId: 'clo3', ploId: 'plo3', cloCode: 'CLO3', ploCode: 'PLO3', ploColor: 'yellow', marks: 3, percentage: 3 }
+            ]
         }
     };
 
@@ -802,19 +886,33 @@
     const cloGrid = document.getElementById('clo-grid');
     const cloPloMappingContainer = document.getElementById('clo-plo-mapping-container');
     const cloPloPreview = document.getElementById('clo-plo-preview');
+    const marksAssignmentContainer = document.getElementById('marks-assignment-container');
+    const marksValidation = document.getElementById('marks-validation');
+    const totalMarksDisplay = document.getElementById('totalMarksDisplay');
+    const totalWeightDisplay = document.getElementById('totalWeightDisplay');
+    const assignedMarksDisplay = document.getElementById('assignedMarksDisplay');
+    const assignedWeightDisplay = document.getElementById('assignedWeightDisplay');
+    const remainingMarksDisplay = document.getElementById('remainingMarksDisplay');
+    const remainingWeightDisplay = document.getElementById('remainingWeightDisplay');
     const deleteItemName = document.getElementById('deleteItemName');
     const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
     const submitAssessmentBtn = document.getElementById('submitAssessment');
-    const nextToPloBtn = document.getElementById('nextToPloBtn');
-    const backToCloBtn = document.getElementById('backToCloBtn');
     
-    // Tab switching functionality
+    // Tab buttons
     const tabBtns = document.querySelectorAll('.tab-btn');
     const tabContents = document.querySelectorAll('.tab-content');
+    const nextToCloBtn = document.getElementById('nextToCloBtn');
+    const backToBasicBtn = document.getElementById('backToBasicBtn');
+    const nextToPloBtn = document.getElementById('nextToPloBtn');
+    const backToCloBtn = document.getElementById('backToCloBtn');
+    const nextToMarksBtn = document.getElementById('nextToMarksBtn');
+    const backToPloBtn = document.getElementById('backToPloBtn');
 
     let selectedClos = [];
     let cloPloPairs = [];
     let itemToDelete = null;
+    let totalMarks = 0;
+    let totalWeight = 0;
 
     // Initialize CLO grid display in modal
     function initializeCloGrid() {
@@ -920,7 +1018,9 @@
                                 ploId: ploId,
                                 cloCode: clos.find(c => c.id === cloId).code,
                                 ploCode: plo.code,
-                                ploColor: plo.color
+                                ploColor: plo.color,
+                                marks: 0,
+                                percentage: 0
                             });
                             this.classList.add('selected');
                         } else {
@@ -986,18 +1086,226 @@
         cloPloPreview.appendChild(pairsContainer);
     }
     
-    // Get selected PLOs for each CLO
-    function getSelectedPloMapping() {
-        const mapping = {};
+    // Initialize marks assignment interface
+    function initializeMarksAssignment() {
+        marksAssignmentContainer.innerHTML = '';
         
-        selectedClos.forEach(cloId => {
-            const selectedPlosForClo = cloPloPairs
-                .filter(pair => pair.cloId === cloId)
-                .map(pair => pair.ploId);
-            mapping[cloId] = selectedPlosForClo;
+        if (cloPloPairs.length === 0) {
+            marksAssignmentContainer.innerHTML = `
+                <div class="text-center p-8 text-gray-500">
+                    <i class="fas fa-info-circle text-2xl mb-2"></i>
+                    <p>No CLO-PLO pairs selected. Please go back and map CLOs to PLOs.</p>
+                </div>
+            `;
+            return;
+        }
+        
+        // Update total marks and weight
+        totalMarks = parseInt(document.getElementById('assessmentTotalMarks').value) || 0;
+        totalWeight = parseInt(document.getElementById('assessmentTotalWeight').value) || 0;
+        
+        totalMarksDisplay.textContent = `${totalMarks} marks`;
+        totalWeightDisplay.textContent = `${totalWeight}%`;
+        
+        // Create marks assignment for each CLO-PLO pair
+        cloPloPairs.forEach((pair, index) => {
+            const assignmentItem = document.createElement('div');
+            assignmentItem.className = 'marks-assignment-item p-4 border border-gray-200 rounded-lg bg-gray-50';
+            assignmentItem.dataset.index = index;
+            
+            // Calculate suggested marks and percentage
+            const suggestedMarks = Math.floor(totalMarks / cloPloPairs.length);
+            const suggestedPercentage = Math.floor(totalWeight / cloPloPairs.length);
+            
+            assignmentItem.innerHTML = `
+                <div class="pair-info mb-4">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <span class="clo-plo-badge bg-${pair.ploColor}-100 text-${pair.ploColor}-800 px-3 py-1 rounded-full text-sm font-medium flex items-center gap-1">
+                                <span>${pair.cloCode}</span>
+                                <span class="text-xs">→</span>
+                                <span>${pair.ploCode}</span>
+                            </span>
+                        </div>
+                        <div class="text-xs text-gray-500">
+                            Suggested: ${suggestedMarks} marks (${suggestedPercentage}%)
+                        </div>
+                    </div>
+                </div>
+                <div class="marks-inputs grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="form-group">
+                        <label class="block mb-1 text-secondary text-sm font-medium">Marks</label>
+                        <div class="relative">
+                            <input type="number" 
+                                   class="marks-input w-full p-2 border border-gray-300 rounded-lg text-sm transition-all duration-300 ease-in-out focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                                   placeholder="Enter marks" 
+                                   min="0" 
+                                   max="${totalMarks}"
+                                   value="${pair.marks || ''}"
+                                   data-index="${index}">
+                            <div class="absolute right-3 top-2 text-gray-400 text-sm">marks</div>
+                        </div>
+                        <div class="text-xs text-gray-500 mt-1">Max: ${totalMarks} marks</div>
+                    </div>
+                    <div class="form-group">
+                        <label class="block mb-1 text-secondary text-sm font-medium">Percentage</label>
+                        <div class="relative">
+                            <input type="number" 
+                                   class="percentage-input w-full p-2 border border-gray-300 rounded-lg text-sm transition-all duration-300 ease-in-out focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20" 
+                                   placeholder="Enter percentage" 
+                                   min="0" 
+                                   max="${totalWeight}"
+                                   step="0.1"
+                                   value="${pair.percentage || ''}"
+                                   data-index="${index}">
+                            <div class="absolute right-3 top-2 text-gray-400 text-sm">%</div>
+                        </div>
+                        <div class="text-xs text-gray-500 mt-1">Max: ${totalWeight}%</div>
+                    </div>
+                </div>
+                <div class="mt-2 text-xs text-gray-500">
+                    <span class="ratio-display" id="ratio-${index}">Ratio: 0 marks = 0%</span>
+                </div>
+            `;
+            
+            marksAssignmentContainer.appendChild(assignmentItem);
+            
+            // Add event listeners for marks and percentage inputs
+            setTimeout(() => {
+                const marksInput = assignmentItem.querySelector('.marks-input');
+                const percentageInput = assignmentItem.querySelector('.percentage-input');
+                const ratioDisplay = assignmentItem.querySelector('.ratio-display');
+                
+                // Update pair data when inputs change
+                const updatePairData = () => {
+                    const marksValue = parseFloat(marksInput.value) || 0;
+                    const percentageValue = parseFloat(percentageInput.value) || 0;
+                    
+                    // Update the pair object
+                    cloPloPairs[index].marks = marksValue;
+                    cloPloPairs[index].percentage = percentageValue;
+                    
+                    // Update ratio display
+                    ratioDisplay.textContent = `Ratio: ${marksValue} marks = ${percentageValue}%`;
+                    
+                    // Update totals display
+                    updateTotalsDisplay();
+                };
+                
+                marksInput.addEventListener('input', updatePairData);
+                percentageInput.addEventListener('input', updatePairData);
+                
+                // Initialize ratio display
+                ratioDisplay.textContent = `Ratio: ${pair.marks || 0} marks = ${pair.percentage || 0}%`;
+            }, 100);
         });
         
-        return mapping;
+        // Update totals display
+        updateTotalsDisplay();
+    }
+    
+    // Update totals display
+    function updateTotalsDisplay() {
+        let assignedMarks = 0;
+        let assignedWeight = 0;
+        
+        cloPloPairs.forEach(pair => {
+            assignedMarks += parseFloat(pair.marks) || 0;
+            assignedWeight += parseFloat(pair.percentage) || 0;
+        });
+        
+        assignedMarksDisplay.textContent = `${assignedMarks} marks`;
+        assignedWeightDisplay.textContent = `${assignedWeight}%`;
+        
+        const remainingMarks = totalMarks - assignedMarks;
+        const remainingWeight = totalWeight - assignedWeight;
+        
+        remainingMarksDisplay.textContent = `${remainingMarks} marks`;
+        remainingWeightDisplay.textContent = `${remainingWeight}%`;
+        
+        // Update validation message
+        updateValidationMessage(assignedMarks, assignedWeight, remainingMarks, remainingWeight);
+    }
+    
+    // Update validation message
+    function updateValidationMessage(assignedMarks, assignedWeight, remainingMarks, remainingWeight) {
+        marksValidation.innerHTML = '';
+        marksValidation.classList.remove('hidden', 'bg-red-50', 'border-red-200', 'bg-green-50', 'border-green-200');
+        
+        if (assignedMarks === 0 && assignedWeight === 0) {
+            marksValidation.classList.add('hidden');
+            return;
+        }
+        
+        if (Math.abs(remainingMarks) < 0.01 && Math.abs(remainingWeight) < 0.01) {
+            // Perfect match
+            marksValidation.innerHTML = `
+                <div class="flex items-center text-green-700">
+                    <i class="fas fa-check-circle mr-2"></i>
+                    <span>Perfect! Total marks and weightage match the assessment totals.</span>
+                </div>
+            `;
+            marksValidation.classList.add('bg-green-50', 'border-green-200');
+        } else if (remainingMarks > 0 && remainingWeight > 0) {
+            // Under-assigned
+            marksValidation.innerHTML = `
+                <div class="flex items-center text-yellow-700">
+                    <i class="fas fa-exclamation-circle mr-2"></i>
+                    <span>Under-assigned: ${remainingMarks} marks and ${remainingWeight}% remaining to distribute.</span>
+                </div>
+            `;
+            marksValidation.classList.add('bg-yellow-50', 'border-yellow-200');
+        } else if (remainingMarks < 0 || remainingWeight < 0) {
+            // Over-assigned
+            marksValidation.innerHTML = `
+                <div class="flex items-center text-red-700">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <span>Over-assigned! Reduce by ${Math.abs(remainingMarks)} marks and ${Math.abs(remainingWeight)}%.</span>
+                </div>
+            `;
+            marksValidation.classList.add('bg-red-50', 'border-red-200');
+        } else if (remainingMarks > 0 && remainingWeight < 0) {
+            // Mixed
+            marksValidation.innerHTML = `
+                <div class="flex items-center text-red-700">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <span>Imbalance: ${remainingMarks} marks remaining but ${Math.abs(remainingWeight)}% over-assigned.</span>
+                </div>
+            `;
+            marksValidation.classList.add('bg-red-50', 'border-red-200');
+        } else if (remainingMarks < 0 && remainingWeight > 0) {
+            // Mixed
+            marksValidation.innerHTML = `
+                <div class="flex items-center text-red-700">
+                    <i class="fas fa-exclamation-triangle mr-2"></i>
+                    <span>Imbalance: ${Math.abs(remainingMarks)} marks over-assigned but ${remainingWeight}% remaining.</span>
+                </div>
+            `;
+            marksValidation.classList.add('bg-red-50', 'border-red-200');
+        }
+        
+        marksValidation.classList.remove('hidden');
+    }
+    
+    // Validate marks assignment
+    function validateMarksAssignment() {
+        let assignedMarks = 0;
+        let assignedWeight = 0;
+        
+        cloPloPairs.forEach(pair => {
+            assignedMarks += parseFloat(pair.marks) || 0;
+            assignedWeight += parseFloat(pair.percentage) || 0;
+        });
+        
+        const remainingMarks = totalMarks - assignedMarks;
+        const remainingWeight = totalWeight - assignedWeight;
+        
+        // Allow small rounding errors
+        if (Math.abs(remainingMarks) < 0.01 && Math.abs(remainingWeight) < 0.01) {
+            return true;
+        }
+        
+        return false;
     }
     
     // Tab switching
@@ -1033,8 +1341,8 @@
         cloPloPairs = [];
         initializeCloGrid();
         
-        // Reset tabs to CLO selection
-        switchTab('clo-tab');
+        // Reset tabs to basic info
+        switchTab('basic-tab');
         
         // Set button text
         submitAssessmentBtn.textContent = isEdit ? 'Save Changes' : 'Add Assessment';
@@ -1042,25 +1350,18 @@
         if (isEdit && itemData) {
             document.getElementById('assessmentItemId').value = itemData.name;
             document.getElementById('assessmentName').value = itemData.name;
-            document.getElementById('assessmentMarks').value = itemData.marks;
-            document.getElementById('assessmentWeight').value = itemData.weight;
+            document.getElementById('assessmentTotalMarks').value = itemData.marks;
+            document.getElementById('assessmentTotalWeight').value = itemData.weight;
             document.getElementById('assessmentDescription').value = itemData.description;
             document.getElementById('assessmentType').value = itemData.type;
             
-            // Select existing CLOs
+            // Select existing CLOs and PLO pairs
             if (itemData.clos) {
-                itemData.clos.forEach(cloId => {
-                    const item = cloGrid.querySelector(`[data-clo-id="${cloId}"]`);
-                    if (item) {
-                        item.click(); // Programmatically click to select
-                        selectedClos.push(cloId);
-                    }
-                });
-                
-                // If there's existing PLO mapping, initialize it
-                if (itemData.ploMapping) {
-                    // This will be applied when user switches to PLO tab
-                }
+                selectedClos = [...itemData.clos];
+            }
+            
+            if (itemData.cloPloPairs) {
+                cloPloPairs = [...itemData.cloPloPairs];
             }
         } else {
             document.getElementById('assessmentItemId').value = '';
@@ -1105,7 +1406,34 @@
         });
     });
 
-    // Next to PLO button
+    // Tab navigation buttons
+    nextToCloBtn.addEventListener('click', function() {
+        const assessmentName = document.getElementById('assessmentName').value;
+        const totalMarks = document.getElementById('assessmentTotalMarks').value;
+        const totalWeight = document.getElementById('assessmentTotalWeight').value;
+        
+        if (!assessmentName) {
+            alert('Please enter an assessment name.');
+            return;
+        }
+        
+        if (!totalMarks || totalMarks <= 0) {
+            alert('Please enter valid total marks.');
+            return;
+        }
+        
+        if (!totalWeight || totalWeight <= 0 || totalWeight > 100) {
+            alert('Please enter valid total weightage (1-100%).');
+            return;
+        }
+        
+        switchTab('clo-tab');
+    });
+
+    backToBasicBtn.addEventListener('click', function() {
+        switchTab('basic-tab');
+    });
+
     nextToPloBtn.addEventListener('click', function() {
         if (selectedClos.length === 0) {
             alert('Please select at least one CLO before proceeding.');
@@ -1115,9 +1443,21 @@
         switchTab('plo-tab');
     });
 
-    // Back to CLO button
     backToCloBtn.addEventListener('click', function() {
         switchTab('clo-tab');
+    });
+
+    nextToMarksBtn.addEventListener('click', function() {
+        if (cloPloPairs.length === 0) {
+            alert('Please select at least one CLO-PLO mapping before proceeding.');
+            return;
+        }
+        initializeMarksAssignment();
+        switchTab('marks-tab');
+    });
+
+    backToPloBtn.addEventListener('click', function() {
+        switchTab('plo-tab');
     });
 
     // Confirmation for Delete Modal
@@ -1135,13 +1475,35 @@
     tabBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const tabName = this.dataset.tab;
+            
+            // Validate before switching to certain tabs
+            if (tabName === 'clo-tab') {
+                const assessmentName = document.getElementById('assessmentName').value;
+                const totalMarks = document.getElementById('assessmentTotalMarks').value;
+                const totalWeight = document.getElementById('assessmentTotalWeight').value;
+                
+                if (!assessmentName || !totalMarks || !totalWeight) {
+                    alert('Please complete the basic information first.');
+                    return;
+                }
+            }
+            
             if (tabName === 'plo-tab' && selectedClos.length === 0) {
                 alert('Please select at least one CLO before mapping to PLOs.');
                 return;
             }
+            
+            if (tabName === 'marks-tab' && cloPloPairs.length === 0) {
+                alert('Please select at least one CLO-PLO mapping before assigning marks.');
+                return;
+            }
+            
             switchTab(tabName);
+            
             if (tabName === 'plo-tab') {
                 initializeCloPloMapping();
+            } else if (tabName === 'marks-tab') {
+                initializeMarksAssignment();
             }
         });
     });
@@ -1176,28 +1538,48 @@
         const itemName = document.getElementById('assessmentName').value;
         const isEdit = document.getElementById('assessmentItemId').value !== '';
         
-        // Validate that at least one CLO-PLO pair is selected
-        if (cloPloPairs.length === 0) {
-            alert('Please select at least one CLO-PLO mapping.');
+        // Validate marks assignment
+        if (!validateMarksAssignment()) {
+            alert('Please ensure the total marks and percentages assigned match the assessment totals.\n\nCheck the validation message in the "Assign Marks" tab for details.');
+            switchTab('marks-tab');
+            return;
+        }
+        
+        // Validate each pair has marks and percentage
+        let allPairsHaveMarks = true;
+        cloPloPairs.forEach(pair => {
+            if (!pair.marks || pair.marks <= 0 || !pair.percentage || pair.percentage <= 0) {
+                allPairsHaveMarks = false;
+            }
+        });
+        
+        if (!allPairsHaveMarks) {
+            alert('Please assign marks and percentages to all CLO-PLO pairs.');
+            switchTab('marks-tab');
             return;
         }
         
         const action = isEdit ? 'updated' : 'added';
         
-        // Create success message with CLO-PLO pairs summary
-        let summaryMessage = `Assessment "${itemName}" ${action} successfully!\n\nCLO-PLO Pairs:\n`;
+        // Create success message with detailed summary
+        let summaryMessage = `Assessment "${itemName}" ${action} successfully!\n\n`;
+        summaryMessage += `Total: ${totalMarks} marks (${totalWeight}%)\n\n`;
+        summaryMessage += `CLO-PLO Pairs with Marks:\n`;
+        
         cloPloPairs.forEach(pair => {
-            summaryMessage += `• ${pair.cloCode} → ${pair.ploCode}\n`;
+            summaryMessage += `• ${pair.cloCode} → ${pair.ploCode}: ${pair.marks} marks (${pair.percentage}%)\n`;
         });
+        
+        summaryMessage += `\nTotal Assigned: ${cloPloPairs.reduce((sum, pair) => sum + pair.marks, 0)} marks (${cloPloPairs.reduce((sum, pair) => sum + pair.percentage, 0)}%)`;
         
         alert(summaryMessage);
         addAssessmentModal.style.display = 'none';
         
         // In a real application, you would submit the form data to the server here
-        // including: itemName, marks, weight, description, type, selectedClos, and cloPloPairs
+        // including: itemName, marks, weight, description, type, selectedClos, and cloPloPairs with marks
     });
 
-    // Initialize CLO grid on page load
+    // Initialize on page load
     document.addEventListener('DOMContentLoaded', function() {
         initializeCloGrid();
         
