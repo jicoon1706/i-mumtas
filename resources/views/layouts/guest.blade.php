@@ -34,7 +34,6 @@
 
             body {
                 @apply font-sans text-gray-700 min-h-screen;
-                /* Background is only visible around the .admin-container */
                 background: linear-gradient(135deg, #17A2B8 0%, #0f8a9e 100%);
             }
 
@@ -45,38 +44,50 @@
 
         @layer components {
             .admin-container {
-                /* Set up the main flex container for sidebar and content */
                 @apply flex min-h-screen;
             }
 
             .sidebar {
-                @apply w-64 flex-shrink-0 shadow-2xl flex flex-col;
-                /* Rich teal gradient for sidebar */
+                @apply flex-shrink-0 shadow-2xl flex flex-col transition-all duration-300 ease-in-out;
                 background: linear-gradient(180deg, #1E40AF 0%, #3B82F6 50%, #60A5FA 100%);
-                /* background: linear-gradient(180deg, #6B46C1 0%, #8B5CF6 50%, #A78BFA 100%); */
+                width: 80px;
+            }
+
+            .sidebar.expanded {
+                width: 256px;
             }
 
             .main-content {
-                /* Allow content to take the remaining space and set a neutral background */
-                @apply flex-1 p-8 overflow-auto;
+                @apply flex-1 p-8 overflow-auto transition-all duration-300;
                 background: linear-gradient(135deg, #EFF6FF 0%, #DBEAFE 50%, #BFDBFE 100%);
-                /* background: linear-gradient(135deg, #F5F3FF 0%, #E9D5FF 50%, #D8B4FE 100%); */
             }
 
             .logo {
-                @apply p-6 border-b border-teal-800;
+                @apply p-6 border-b border-teal-800 transition-all duration-300;
             }
             
             .logo h2 {
-                @apply text-2xl font-bold text-white;
+                @apply text-2xl font-bold text-white whitespace-nowrap overflow-hidden;
             }
             
             .logo h2 span {
                 @apply bg-gradient-to-r from-teal-400 to-cyan-500 bg-clip-text text-transparent;
             }
 
+            .logo p {
+                @apply text-teal-300 text-sm mt-1 whitespace-nowrap overflow-hidden;
+            }
+
+            .sidebar:not(.expanded) .logo h2 {
+                @apply text-center;
+            }
+
+            .sidebar:not(.expanded) .logo p {
+                @apply opacity-0;
+            }
+
             .nav-links li a {
-                @apply flex items-center p-4 text-teal-100 hover:bg-teal-800/50 hover:text-white transition-all duration-200 relative;
+                @apply flex items-center p-4 text-teal-100 hover:bg-teal-800/50 hover:text-white transition-all duration-200 relative w-full text-left;
             }
             
             .nav-links li a::before {
@@ -97,10 +108,21 @@
             }
 
             .nav-links i {
-                @apply text-lg mr-4 w-5 text-center;
+                @apply text-lg w-5 text-center flex-shrink-0;
             }
-            
-            /* Add base Header and User Info styles here for global use */
+
+            .nav-links span {
+                @apply whitespace-nowrap overflow-hidden transition-all duration-300;
+            }
+
+            .sidebar:not(.expanded) .nav-links span {
+                @apply opacity-0 w-0;
+            }
+
+            .sidebar.expanded .nav-links i {
+                @apply mr-4;
+            }
+
             .header {
                 @apply flex justify-between items-center bg-white p-6 rounded-2xl shadow-xl mb-8 border border-gray-100;
                 background: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
@@ -119,7 +141,6 @@
                 @apply text-xs text-gray-500 m-0;
             }
             
-            /* Add a generic footer style for the main content area */
             footer {
                 @apply text-center py-4 mt-8 text-sm text-gray-500;
             }
@@ -127,94 +148,70 @@
     </style>
 </head>
 <body>
-    <div class="admin-container">
+    <div class="admin-container" x-data="{ sidebarExpanded: false }">
         <div 
-    x-data="{ open: false, lastScroll: 0, idleTimeout: null }"
-    x-init="
+            class="sidebar"
+            :class="{ 'expanded': sidebarExpanded }"
+            @mouseenter="sidebarExpanded = true"
+            @mouseleave="sidebarExpanded = false"
+        >
+            <div class="logo">
+                <h2 x-show="sidebarExpanded" x-transition>Edu<span>Manage</span></h2>
+                <h2 x-show="!sidebarExpanded" class="text-center">EM</h2>
+                <p x-show="sidebarExpanded" x-transition>Guest Panel</p>
+            </div>
+            
+            <ul class="nav-links space-y-1">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
 
-        // Expand when scrolling down slightly
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 30) {
-                open = true;
-                clearTimeout(idleTimeout);
+                <li>
+                    <a href="/guest-view-spider-chart">
+                        <i class="fas fa-cogs"></i>
+                        <span>Spider Chart</span>
+                    </a>
+                </li>
 
-                // Collapse after 2 seconds of no scroll
-                idleTimeout = setTimeout(() => open = false, 2000);
-            }
-        });
+                <li>
+                    <a href="#">
+                        <i class="fas fa-book"></i>
+                        <span>Students</span>
+                    </a>
+                </li>
 
-    "
-    @mouseenter="open = true"
-    @mouseleave="open = false"
-    :class="open ? 'w-64' : 'w-20'"
-    class="sidebar transition-all duration-300 flex flex-col shadow-2xl overflow-hidden"
->
-    <!-- LOGO -->
-    <div class="logo p-6 border-b border-teal-800 flex items-center justify-center">
-        <template x-if="open">
-            <h2 class="text-2xl font-bold text-white">
-                Edu<span class="bg-gradient-to-r from-teal-400 to-cyan-500 bg-clip-text text-transparent">Manage</span>
-            </h2>
-        </template>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-line"></i>
+                        <span>PLO</span>
+                    </a>
+                </li>
 
-        <template x-if="!open">
-            <i class="fas fa-graduation-cap text-white text-2xl"></i>
-        </template>
-    </div>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-users"></i>
+                        <span>Section</span>
+                    </a>
+                </li>
 
-    <!-- NAVIGATION -->
-    <ul class="nav-links mt-2">
-        <li>
-            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
-                <i class="fas fa-home w-5 text-center"></i>
-                <span x-show="open" class="ml-3">Dashboard</span>
-            </a>
-        </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-user-circle"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
 
-        <li>
-            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
-                <i class="fas fa-cogs w-5 text-center"></i>
-                <span x-show="open" class="ml-3">Course Management</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
-                <i class="fas fa-book w-5 text-center"></i>
-                <span x-show="open" class="ml-3">Students</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
-                <i class="fas fa-chart-line w-5 text-center"></i>
-                <span x-show="open" class="ml-3">PLO</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
-                <i class="fas fa-users w-5 text-center"></i>
-                <span x-show="open" class="ml-3">Section</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
-                <i class="fas fa-user-circle w-5 text-center"></i>
-                <span x-show="open" class="ml-3">Profile</span>
-            </a>
-        </li>
-
-        <li>
-            <a href="#" class="flex items-center p-4 text-teal-100 hover:bg-teal-800/50 transition-all">
-                <i class="fas fa-sign-out-alt w-5 text-center"></i>
-                <span x-show="open" class="ml-3">Logout</span>
-            </a>
-        </li>
-    </ul>
-</div>
-
+                <li>
+                    <a href="#">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
 
         <div class="main-content">
             @yield('content')

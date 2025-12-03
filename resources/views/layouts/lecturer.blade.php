@@ -179,12 +179,12 @@
                 <p x-show="sidebarExpanded" x-transition>Lecturer Panel</p>
             </div>
             <ul class="nav-links space-y-1">
-                <li>
+                <!-- <li>
                     <a href="/l-dashboard">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
-                </li>
+                </li> -->
             
                 <!-- Lecturer Dropdown -->
                 <li class="relative">
@@ -208,9 +208,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/lecturer/assignments">
+                            <a href="/add-student-marks">
                                 <i class="fas fa-tasks"></i>
-                                <span>Assignments</span>
+                                <span>Student Marks</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="/generate-spider-chart">
+                                <i class="fas fa-book"></i>
+                                <span>Spider Chart</span>
                             </a>
                         </li>
                     </ul>

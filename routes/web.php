@@ -58,7 +58,19 @@ Route::get('/view-students', function () {
     return view('lecturer/l_view_students');
 });
 
+Route::get('/generate-spider-chart', function () {
+    return view('lecturer/l_spider_chart');
+});
+
 Route::get('/guest-dashboard', function () {
     return view('guest/guest_dashboard');
+});
+
+Route::get('/guest-view-spider-chart', function () {
+    return view('guest/guest_spider_chart');
+});
+
+Route::get('/guest-view-report', function () {
+    return view('guest/guest_report');
 });
 
