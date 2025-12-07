@@ -163,7 +163,7 @@
             
             <ul class="nav-links space-y-1">
                 <li>
-                    <a href="#">
+                    <a href="/guest-dashboard">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
@@ -177,6 +177,13 @@
                 </li>
 
                 <li>
+                    <a href="/guest-view-report">
+                        <i class="fas fa-cogs"></i>
+                        <span>Report</span>
+                    </a>
+                </li>
+
+                <!-- <li>
                     <a href="#">
                         <i class="fas fa-book"></i>
                         <span>Students</span>
@@ -209,7 +216,7 @@
                         <i class="fas fa-sign-out-alt"></i>
                         <span>Logout</span>
                     </a>
-                </li>
+                </li> -->
             </ul>
         </div>
 

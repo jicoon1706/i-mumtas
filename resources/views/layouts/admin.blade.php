@@ -164,12 +164,12 @@
 
     <!-- NAVIGATION -->
     <ul class="nav-links mt-2">
-        <!-- <li class="{{ Request::is('admin-dashboard') ? 'active' : '' }}">
+        <li class="{{ Request::is('admin-dashboard') ? 'active' : '' }}">
             <a href="{{ url('/admin-dashboard') }}">
                 <i class="fas fa-home"></i>
                 <span x-show="open" class="ml-3">Dashboard</span>
             </a>
-        </li> -->
+        </li>
 
         <li class="{{ Request::is('new-term') ? 'active' : '' }}">
             <a href="{{ url('/new-term') }}">

@@ -179,12 +179,12 @@
                 <p x-show="sidebarExpanded" x-transition>Lecturer Panel</p>
             </div>
             <ul class="nav-links space-y-1">
-                <!-- <li>
+                <li>
                     <a href="/l-dashboard">
                         <i class="fas fa-home"></i>
                         <span>Dashboard</span>
                     </a>
-                </li> -->
+                </li>
             
                 <!-- Lecturer Dropdown -->
                 <li class="relative">
